@@ -1,0 +1,98 @@
+{
+  "rules": {
+    "linebreak-style": [
+      2,
+      "unix"
+    ],
+    "no-console": [
+      0
+    ],
+    "no-unused-vars": [
+      2, { "vars": "all", "varsIgnorePattern": "_", "args": "none" }
+    ],
+    "brace-style": [
+      2, "stroustrup", { "allowSingleLine": true }
+    ],
+    "no-extra-parens": 2,
+    "no-unexpected-multiline": 2,
+    "valid-jsdoc": [2,
+        "prefer": {
+        "return": "returns"
+      }
+    ],
+    // Best Practices
+    // list: https://github.com/eslint/eslint/tree/master/docs/rules#best-practices
+    // require falls through comment on switch-case
+    "no-fallthrough": 2,
+    // enforces consistent newlines before or after dots
+    "dot-location": [2, "property"],
+    // require the use of === and !== (fixable)
+    "eqeqeq": [2, "smart"],
+    // specify curly brace conventions for all control statements
+    "curly": 2,
+    // require use of the second argument for parseInt()
+    "radix": 2,
+
+    // Stylistic Issues
+    // enforce spacing inside array brackets
+    "array-bracket-spacing": [2, "never"],
+    // use single quote, we can use double quote when escape chars
+    "quotes": [2, "double"],
+    // 2 space indentation
+    "indent": [2, 2],
+    // add space after comma
+    "comma-spacing": 2,
+    // require spaces operator like var sum = 1 + 1;
+    "space-infix-ops": 2,
+    // require spaces return, throw, case
+    "space-return-throw-case": 2,
+    // no space before function, eg. 'function()'
+    "space-before-function-paren": [2, "never"],
+    // require space before blocks, eg 'function() {'
+    "space-before-blocks": [2, "always"],
+    // require parens for Constructor
+    "new-parens": 2,
+    // max 3 consecutive empty lines
+    "no-multiple-empty-lines": [2, {max: 3}],
+    // require newline at end of files
+    "eol-last": 2,
+    // no trailing spaces
+    "no-trailing-spaces": 2,
+    // require space after keywords, eg 'for (..)'
+    "space-after-keywords": 2,
+    "no-spaced-func": 2,
+
+    // ECMAScript 6
+    // list: http://eslint.org/docs/rules/#ecmascript-6
+    // Suggest using 'const' wherever possible
+    "prefer-const": 2,
+    "prefer-arrow-callback": 2,
+    // disallow use of this/super before calling super() in constructors.
+    "no-this-before-super": 2,
+    "constructor-super": 2,
+    // Require space before/after arrow function's arrow
+    "arrow-spacing": 2,
+    // Require parens in arrow function argument as needed
+    "arrow-parens": [2, "as-needed"],
+
+    // Strict Mode
+    // list: https://github.com/eslint/eslint/tree/master/docs/rules#strict-mode
+    // 'use strict' on top
+    "strict": [2, "global"],
+
+    // Variables
+    // list: https://github.com/eslint/eslint/tree/master/docs/rules#variables
+    // disallow use of undefined variables (globals)
+    "no-undef": 2,
+
+    // Node
+    "no-sync": 2,
+    "no-process-exit": 2,
+    "no-new-require": 2,
+  },
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "extends": "eslint:recommended"
+}
