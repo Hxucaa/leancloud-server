@@ -1,13 +1,10 @@
 language: node_js
 node_js:
   - 0.12.7
-
-before_script:
-  - 'npm install'
   
 script:
-  - 'npm test:unit'
-  - 'npm test:gen'
+  - 'npm run test:unit'
+  - 'npm run test:gen'
 
 notifications:
   slack:
