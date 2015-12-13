@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - 0.12.7
+
+before_script:
+  - 'npm install'
+  
+script:
+  - 'npm test:unit'
+  - 'npm test:gen'
+
+notifications:
+  slack:
+    rooms: ['laiapp:ogJ1E68zuYx9lcDG3o9Yq9av#rn-ci']
+    on_start: never
+    on_success: always
+    on_failure: always
+
+branches:
+  only:
+    - /^master$/

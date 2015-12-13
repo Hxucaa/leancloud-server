@@ -1,0 +1,8 @@
+{
+  "linters": {
+    "ESLint": {
+      "type": "eslint",
+      "include": "(\\.js$)"
+    }
+  }
+}
