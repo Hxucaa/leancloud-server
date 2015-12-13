@@ -9,7 +9,7 @@
 //const User = CM.User;
 
 import UserFixture from "../../fixture/User.fixture";
-import { calculateAgeGroup, calculateHoroscope } from "../helper/utility"
+import { calculateAgeGroup, calculateHoroscope } from "../helper/utility";
 
 describe("User", () => {
 
@@ -18,16 +18,16 @@ describe("User", () => {
 
   describe("sign up", () => {
 
-    let user
+    let user;
 
     beforeEach(done => {
       user = new UserFixture();
       done();
-    })
+    });
 
     it("should be able to register user in the database", done => {
 
-      return AV.User.signUp(user.username, user.password , {
+      return AV.User.signUp(user.username, user.password, {
         "nickname": user.nickname,
         "type": user.type,
         "gender": user.gender,

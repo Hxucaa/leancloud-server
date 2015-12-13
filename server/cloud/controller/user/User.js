@@ -7,7 +7,7 @@
 //import * as _ from "lodash";
 import AV from "leanengine";
 import * as Rules from "./rules";
-import { calculateHoroscope, calculateAgeGroup } from "./utility"
+import { calculateHoroscope, calculateAgeGroup } from "./utility";
 
 const CM = require("cloudmodel")(AV); // eslint-disable-line import/no-require
 //const User = CM.User;
@@ -18,7 +18,7 @@ function processValidation(response, validation) {
     if (v.isFailure) {
       response.error(v.value);
     }
-  })
+  });
 }
 
 export const beforeSave = function(request, response) {

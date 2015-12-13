@@ -12,3 +12,6 @@ Server code written for LeanCloud based on the so called cloud code 3.0.
 
 ## How to debug and test locally
 Cloud code 3.0 allows developers to test code locally instead of having to deploy the code after each change. This significantly improves development efficiency.
+
+## How to Populate Database
+`node --harmony populator/index.js populate -i <<APP_ID>> -k <<APP_KEY>> -m <<MASTER_KEY>>`

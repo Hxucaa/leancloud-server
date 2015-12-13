@@ -6,7 +6,7 @@
 
 /*eslint-disable no-shadow */
 
-import AV from "leanengine";
+import AV from "avoscloud-sdk";
 
 export default class RoleFixture {
   constructor() {
@@ -51,7 +51,7 @@ export default class RoleFixture {
         this.merchantRole.save(),
         this.curatorRole.save(),
         this.administratorRole.save()
-      )
+      );
 
       this.userRole.getRoles().add(this.merchantRole);
       this.merchantRole.getRoles().add(this.curatorRole);
@@ -67,7 +67,7 @@ export default class RoleFixture {
       console.log("Successfully created roles in the database.");
     }
     catch (errors) {
-      console.error("Failed creating roles in the database. Error messages: ")
+      console.error("Failed creating roles in the database. Error messages: ");
       console.error(errors);
     }
   }

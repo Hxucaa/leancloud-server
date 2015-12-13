@@ -24,7 +24,8 @@
     "lint": "node_modules/.bin/eslint . --fix",
     "deploy": "node_modules/.bin/avoscloud deploy",
     "publish": "node_modules/.bin/avoscloud publish",
-    "jsdoc": "rm -rf ./jsdoc && ./node_modules/.bin/jsdoc -t ./node_modules/ink-docstrap/template -c jsdoc.conf.json"
+    "jsdoc": "rm -rf ./jsdoc && ./node_modules/.bin/jsdoc -t ./node_modules/ink-docstrap/template -c jsdoc.conf.json",
+    "populator": "node --harmony populator/index.js"
   },
   "dependencies": {
     "babel-core": "^6.3.2",
@@ -63,12 +64,14 @@
     "gulp-shell": "^0.5.1",
     "gulp-spawn-mocha": "^2.2.1",
     "gulp-util": "^3.0.7",
-    "ink-docstrap": "^0.5.2",
+    "ink-docstrap": "^1.0.2",
     "jsdoc": "^3.4.0",
     "mocha": "^2.3.4",
+    "node-progress": "https://github.com/tj/node-progress",
     "plato": "^1.5.0",
     "run-sequence": "^1.1.5",
     "superagent-defaults": "^0.1.14",
-    "supertest": "^1.1.0"
+    "supertest": "^1.1.0",
+    "yargs": "^3.31.0"
   }
 }

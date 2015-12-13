@@ -23,11 +23,3 @@ const app = require("./app");
 const PORT = parseInt(process.env.LC_APP_PORT || 3000, 10);
 
 app.listen(PORT, () => console.log("Node app is running, port: ", PORT));
-
-
-/*************
- * Populate cloud
- *************/
-const Population = require("./server/population/population.js");
-
-Population.populate();
