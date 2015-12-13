@@ -1,0 +1,20 @@
+{
+  "plugins": [
+    "import",
+    "mocha"
+  ],
+  "env": {
+    "mocha": true
+  },
+  "globals": {
+    "expect": true,
+    "assert": true,
+    "Fixture": true,
+    "AV": true
+  },
+  "rules": {
+    // eslint-plugin-mocha
+    "mocha/handle-done-callback": 2,
+    "mocha/no-synchronous-tests": 2
+  }
+}

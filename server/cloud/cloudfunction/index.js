@@ -3,7 +3,8 @@
  */
 
 "use strict";
+import * as getParticipantsPreview from "./getParticipantsPreview";
 
-module.exports = {
-  getParticipantsPreview: require("./getParticipantsPreview")
+export default {
+  getParticipantsPreview
 };

@@ -4,29 +4,29 @@
 
 "use strict";
 
-const Validator = require("validator");
-const Utility = require("../../utility/utility.js");
+import Validator from "validator";
 
 //const CM = require("cloudmodel");
 //const Business = CM.Business;
 
+/* eslint-disable complexity, max-statements */
 
-const beforeSave = function(request, response) {
+export const beforeSave = function(request, response) {
 
   /**
    *  Parameters
    */
-  var business = request.object;
+  const business = request.object;
 
-  var userId = business.get("userId");
-  var companyId = business.get("companyId");
-  var name = business.get("name");
-  var phone = business.get("phone");
-  var email = business.get("email");
-  var websiteUrl = business.get("websiteUrl");
-  var addressId = business.get("addressId");
-  //var coverImage = business.get("coverImage");
-  var description = business.get("description");
+  const userId = business.get("userId");
+  const companyId = business.get("companyId");
+  const name = business.get("name");
+  const phone = business.get("phone");
+  const email = business.get("email");
+  const websiteUrl = business.get("websiteUrl");
+  const addressId = business.get("addressId");
+  //const coverImage = business.get("coverImage");
+  const description = business.get("description");
 
   /**
    * Validation
@@ -40,7 +40,7 @@ const beforeSave = function(request, response) {
     response.error("Company ID cannot be blank.");
   }
 
-  if (Utility.isEmptyString(name) || !name) {
+  if (!name) {
     response.error("Name cannot be blank.");
   }
   // TODO: 20 characters is kind of short for a name
@@ -63,7 +63,9 @@ const beforeSave = function(request, response) {
   if (websiteUrl.length > 200) {
     response.error("Website URL must be 200 characters or fewer.");
   }
-  var isValidURL = Validator.isUrl(websiteUrl, { protocols: ["http", "https"] });
+
+  const isValidURL = Validator.isUrl(websiteUrl, { protocols: ["http", "https"] });
+
   if (!isValidURL) {
     response.error("Invalid website URL.");
   }
@@ -82,8 +84,4 @@ const beforeSave = function(request, response) {
   }
 
   response.success();
-};
-
-module.exports = {
-  beforeSave: beforeSave
 };

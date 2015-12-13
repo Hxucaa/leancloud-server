@@ -1,31 +1,32 @@
 "use strict";
 
-const _ = require("lodash");
-const Validator = require("validator");
-const Utility = require("../../utility/utility.js");
+//import _ from "lodash";
+import Validator from "validator";
 
 //const CM = require("cloudmodel");
 //const Company = CM.Company;
 
-const beforeSave = function(request, response) {
+/* eslint-disable complexity, max-statements */
+
+export const beforeSave = function(request, response) {
 
   /**
    *  Parameters
    */
-  var company = request.object;
+  const company = request.object;
 
-  var companyName = company.get("companyName");
-  var phone = company.get("phone");
-  var email = company.get("email");
-  var websiteUrl = company.get("websiteUrl");
-  var addressId = company.get("addressId");
+  const companyName = company.get("companyName");
+  const phone = company.get("phone");
+  const email = company.get("email");
+  const websiteUrl = company.get("websiteUrl");
+  const addressId = company.get("addressId");
   //var coverImage = company.get("coverImage");
-  var description = company.get("description");
+  const description = company.get("description");
 
   /**
    * Validation
    */
-  if (Utility.isEmptyString(companyName) || !companyName) {
+  if (!companyName) {
     response.error("Company name cannot be blank.");
   }
   if (companyName.length > 200) {
@@ -47,7 +48,9 @@ const beforeSave = function(request, response) {
   if (websiteUrl.length > 200) {
     response.error("Website URL must be 200 characters or fewer.");
   }
-  var isValidURL = Validator.isUrl(websiteUrl, { protocols: ["http", "https"] });
+
+  const isValidURL = Validator.isUrl(websiteUrl, { protocols: ["http", "https"] });
+
   if (!isValidURL) {
     response.error("Invalid website URL.");
   }
@@ -66,9 +69,4 @@ const beforeSave = function(request, response) {
   }
 
   response.success();
-};
-
-
-module.exports = {
-  beforeSave: beforeSave
 };

@@ -4,13 +4,18 @@
 
 "use strict";
 
-const path = require("path");
+import * as Business from "./business/Business";
+import * as BusinessHour from "./business/BusinessHour";
+import * as BusinessStatistics from "./business/BusinessStatistics";
+import * as Company from "./business/Company";
+import * as Participation from "./participation/Participation";
+import * as User from "./user/User";
 
-module.exports = {
-  Business: require(path.join(__dirname, "business/Business")),
-  BusinessHour: require(path.join(__dirname, "business/BusinessHour")),
-  BusinessStatistics: require(path.join(__dirname, "business/BusinessStatistics")),
-  Company: require(path.join(__dirname, "business/Company")),
-  Participation: require(path.join(__dirname, "participation/Participation")),
-  User: require(path.join(__dirname, "user/User"))
+export default {
+  Business,
+  BusinessHour,
+  BusinessStatistics,
+  Company,
+  Participation,
+  User
 };

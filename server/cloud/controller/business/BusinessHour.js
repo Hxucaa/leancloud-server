@@ -1,20 +1,21 @@
 "use strict";
 
-const _ = require("lodash");
-const Utility = require("../../utility/utility.js");
+//import _ from "lodash";
+//import Validator from "validator";
 
 //const CM = require("cloudmodel");
 //const BusinessHour = CM.BusinessHour;
 
+/* eslint-disable complexity, max-statements */
 
-const beforeSave = function(request, response) {
+export const beforeSave = function(request, response) {
 
-  var businessHour = request.object;
+  const businessHour = request.object;
 
-  var businessId = businessHour.get("businessId");
-  var day = businessHour.get("day");
-  var timeFrom = businessHour.get("timeFrom");
-  var timeEnd = businessHour.get("timeEnd");
+  const businessId = businessHour.get("businessId");
+  const day = businessHour.get("day");
+  const timeFrom = businessHour.get("timeFrom");
+  const timeEnd = businessHour.get("timeEnd");
 
   if (!businessId) {
     response.error("Business ID cannot be blank.");
@@ -31,15 +32,9 @@ const beforeSave = function(request, response) {
   if (!timeFrom) {
     response.error("Start time cannot be blank.");
   }
-  if (!Utility.isValid24HrTime(timeFrom)) {
-    response.error("Start time is invalid.");
-  }
 
   if (!timeEnd) {
     response.error("End time cannot be blank.");
-  }
-  if (!Utility.isValid24HrTime(timeEnd)) {
-    response.error("End time is invalid.");
   }
 
   // timeEnd must be later than timeFrom
@@ -50,8 +45,4 @@ const beforeSave = function(request, response) {
 
 
   response.success();
-};
-
-module.exports = {
-  beforeSave: beforeSave
 };

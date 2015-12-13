@@ -1,22 +1,45 @@
-"use strict";
+//import _ from "lodash";
+import AV from "leanengine";
 
-const _ = require("lodash");
-const AV = require("leanengine");
+import { Business, Participation } from "cloudmodel";
 
-const CM = require("cloudmodel");
-const Business = CM.Business;
-const Participation = CM.Participation;
+const prioritizeUsers = function(userArray) {
+  const hasPicArray = userArray.filter(user => {
+    return user.get("profileImg") !== null;
+  });
 
-const getParticipantsPreview = function(request, response) {
-  var businessID = request.params.business;
-  var userArray = [];
+  if (hasPicArray.length > 5) {
+    let fArray = hasPicArray.filter(user => {
+      return !user.get("gender");
+    });
+    const mArray = hasPicArray.filter(user => {
+      return user.get("gender");
+    });
+
+    if (fArray.length < 5) {
+      for (let i = 0; i < 5 - fArray.length; i++) {
+        fArray.push(mArray[ i ]);
+      }
+    }
+    else {
+      fArray = fArray.slice(5);
+    }
+
+    return fArray;
+  }
+};
+
+export const getParticipantsPreview = function(request, response) {
+  const businessID = request.params.business;
+  const userArray = [];
 
   if (!businessID) {
     response.error("no business ID parameter passed to function");
   }
 
-  var pQuery = new AV.Query(Participation);
-  var queryBusiness = new Business();
+  const pQuery = new AV.Query(Participation);
+  const queryBusiness = new Business();
+
   queryBusiness.id = businessID;
   pQuery.equalTo("business", queryBusiness);
   pQuery.include("user");
@@ -31,37 +54,4 @@ const getParticipantsPreview = function(request, response) {
     }, err => {
       response.error(err);
     });
-};
-
-const prioritizeUsers = function(userArray) {
-  var hasPicArray = userArray.filter(user => {
-    return user.get("profileImg") != null;
-  });
-
-  if (hasPicArray.length > 5) {
-    var fArray = hasPicArray.filter(user => {
-      return !user.get("gender");
-    });
-    var mArray = hasPicArray.filter(user => {
-      return user.get("gender");
-    });
-
-    if (fArray.length < 5) {
-      for (var i = 0; i < 5 - fArray.length; i++) {
-        fArray.push(mArray[i]);
-      }
-    }
-    else {
-      fArray = fArray.slice(5);
-    }
-
-    return fArray;
-  }
-  else {
-    return hasPicArray;
-  }
-};
-
-module.exports = {
-  getParticipantsPreview: getParticipantsPreview
 };

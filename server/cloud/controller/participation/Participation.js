@@ -4,20 +4,15 @@
 
 "use strict";
 
-const _ = require("lodash");
-const AV = require("leanengine");
-//const Validator = require("validator");
+//import _ from "lodash";
+//import Validator from "validator";
+import AV from "leanengine";
 
-const CM = require("cloudmodel");
-//const User = CM.User;
-const Business = CM.Business;
-//const Participation = CM.Participation;
-//const BusinessStatistics = CM.BusinessStatistics;
-//const UserStatistics = CM.UserStatistics;
+import { Business } from "cloudmodel";
 
-const beforeSave = function(request, response) {
-  var participation = request.object;
-  var participationType = participation.get("participationType");
+export const beforeSave = function(request, response) {
+  const participation = request.object;
+  const participationType = participation.get("participationType");
 
   // Participation Type Validation
   if (participationType < 0) {
@@ -30,13 +25,14 @@ const beforeSave = function(request, response) {
   response.success();
 };
 
-const afterSave = function(request) {
-  var participation = request.object;
-  var participationType = participation.get("participationType");
-  var business = participation.get("business");
+export const afterSave = function(request) {
+  const participation = request.object;
+  const participationType = participation.get("participationType");
+  const business = participation.get("business");
 
   if (!request.object.existed()) {
-    var query = new AV.Query(Business);
+    const query = new AV.Query(Business);
+
     query.get(business.id)
       .then(queriedBusiness => {
         if (participationType === 0) {
@@ -51,9 +47,4 @@ const afterSave = function(request) {
         queriedBusiness.save();
       });
   }
-};
-
-module.exports = {
-  beforeSave: beforeSave,
-  afterSave: afterSave
 };

@@ -1,19 +1,19 @@
 "use strict";
 
-const _ = require("lodash");
-//const Validator = require("validator");
+//import _ from "lodash";
+//import Validator from "validator";
 
 //const CM = require("cloudmodel");
 //const BusinessStatistics = CM.BusinessStatistics;
 
 
-const beforeSave = function(request, response) {
+export const beforeSave = function(request, response) {
 
-  var businessStatistics = request.object;
+  const businessStatistics = request.object;
 
-  var businessId = businessStatistics.get("businessId");
-  var participationType = businessStatistics.get("participationType");
-  var count = businessStatistics.get("count");
+  const businessId = businessStatistics.get("businessId");
+  const participationType = businessStatistics.get("participationType");
+  const count = businessStatistics.get("count");
 
 
   if (!businessId) {
@@ -36,11 +36,11 @@ const beforeSave = function(request, response) {
   response.success();
 };
 
-const afterSave = function(request) {
+export const afterSave = function(request) {
   /**
    *  Parameters
    */
-  var businessStatistics = request.object;
+  const businessStatistics = request.object;
 
   /**
    * Validation
@@ -54,9 +54,4 @@ const afterSave = function(request) {
     businessStatistics.isActive = false;
     businessStatistics.save();
   }
-};
-
-module.exports = {
-  beforeSave: beforeSave,
-  afterSave: afterSave
 };

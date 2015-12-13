@@ -21,6 +21,4 @@ node_modules
 Thumbs.db
 
 config/secret.js
-config/global.json
-.avoscloud/
 .avoscloud/

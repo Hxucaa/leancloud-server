@@ -1,0 +1,24 @@
+{
+  "plugins": [
+    "import",
+    "mocha"
+  ],
+  "env": {
+    "mocha": true
+  },
+  "globals": {
+    "expect": true,
+    "assert": true,
+    "Fixture": true
+  },
+  "rules": {
+    "semi": [2, "always"],
+    "init-declarations": 0,
+    "max-nested-callbacks": 0,
+    "no-unused-expressions": 0,
+
+    // eslint-plugin-mocha
+    "mocha/no-exclusive-tests": 2,
+    "mocha/no-global-tests": 2
+  }
+}

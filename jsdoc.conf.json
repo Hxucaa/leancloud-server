@@ -1,0 +1,35 @@
+{
+  "tags": {
+    "allowUnknownTags": false,
+    "dictionaries": ["jsdoc"]
+  },
+  "source": {
+    "include": ["server/cloud/cloudfunction", "server/cloud/controller"],
+    "exclude": [],
+    "includePattern": ".+\\.js(doc)?$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "plugins": [],
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": false,
+    "default": {
+      "outputSourceFiles": true
+    },
+    "systemName"      : "LeanCloud Server",
+    "footer"          : "",
+    "copyright"       : "Lai Copyright © .",
+    "navType"         : "vertical",
+    "theme"           : "cerulean",
+    "linenums"        : true,
+    "collapseSymbols" : false,
+    "inverseNav"      : true
+  },
+  "opts": {
+    "encoding": "utf8",
+    "destination": "./jsdoc/",
+    "recurse": true,
+    "private": true,
+    "readme": "./README.md"
+  }
+}
