@@ -25,3 +25,11 @@ AV.initialize(secret.test.APP_ID, secret.test.APP_KEY, secret.test.MASTER_KEY);
 //AV.Cloud.useMasterKey();
 
 global.AV = AV;
+
+before(done => {
+  console.log("---------------------------------------------------------------------------------");
+  console.log("                    System      Test      Starting                               ");
+  console.log("---------------------------------------------------------------------------------");
+  console.log("");
+  done();
+});

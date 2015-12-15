@@ -31,3 +31,11 @@ global.assert = chai.assert;
 //const UserStatistics = CM.UserStatistics
 import * as Fixture from "../fixture";
 global.Fixture = Fixture;
+
+before(done => {
+  console.log("---------------------------------------------------------------------------------");
+  console.log("                   Generative      Test      Starting                            ");
+  console.log("---------------------------------------------------------------------------------");
+  console.log("");
+  done();
+});

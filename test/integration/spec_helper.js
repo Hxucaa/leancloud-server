@@ -44,3 +44,11 @@ request
   .set("Content-Type", "application/json");
 
 global.request = request;
+
+before(done => {
+  console.log("---------------------------------------------------------------------------------");
+  console.log("                    Integration      Test      Starting                          ");
+  console.log("---------------------------------------------------------------------------------");
+  console.log("");
+  done();
+});
