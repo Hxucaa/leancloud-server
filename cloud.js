@@ -9,8 +9,8 @@ import CloudFunction from "./server/cloud/cloudfunction/index";
 AV.Cloud.beforeSave("_User", Controller.User.beforeSave);
 AV.Cloud.afterSave("_User", Controller.User.afterSave);
 AV.Cloud.beforeUpdate("_User", Controller.User.beforeUpdate);
-AV.Cloud.beforeDelete("_User", Controller.User.beforeDelete);
-AV.Cloud.afterDelete("_User", Controller.User.afterDelete);
+//AV.Cloud.beforeDelete("_User", Controller.User.beforeDelete);
+//AV.Cloud.afterDelete("_User", Controller.User.afterDelete);
 
 ////////////////////////////////
 // Business Operations

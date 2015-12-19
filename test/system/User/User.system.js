@@ -13,9 +13,6 @@ import { calculateAgeGroup, calculateHoroscope } from "../helper/utility";
 
 describe("User", () => {
 
-  //const t = new Date(1988, 3, 7);
-  //const n = JSON.stringify(t).slice(1, -1);
-
   describe("sign up", () => {
 
     let user;
@@ -46,6 +43,22 @@ describe("User", () => {
         }, err => {
           done(err);
         });
+    });
+
+    describe("with invalid inputs", () => {
+
+      it("should not be able to register user in the database", done => {
+        return AV.User.signUp(user.username, user.password, {
+          "nickname": user.nickname,
+          "type": user.type,
+          "gender": user.gender,
+          "birthday": user.birthday
+        })
+          .then(null, err => {
+            err.should.eql({ code: 113, message: "coverPhoto is required." });
+            done();
+          });
+      });
 
     });
   });

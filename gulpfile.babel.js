@@ -4,9 +4,6 @@
 
 "use strict";
 
-//const DEBUG = process.env.NODE_ENV === "debug";
-//const CI = process.env.CI === "false";
-
 import gulp from "gulp";
 import runSequence from "run-sequence";
 import mocha from "gulp-spawn-mocha";
@@ -14,6 +11,8 @@ import gutil from "gulp-util";
 import eslint from "gulp-eslint";
 import shell from "gulp-shell";
 import del from "del";
+import babel from "gulp-babel";
+import jeditor from "gulp-json-editor";
 
 import jsdocConf from "./jsdoc.conf.json";
 import pkg from "./package.json";
@@ -35,6 +34,9 @@ gulp.task("default", () => {
 });
 
 gulp.task("test:unit", () => {
+
+  process.env.NODE_ENV = "test";
+
   return gulp
     .src(["test/unit/**/*.js"], { read: false })
     .pipe(mocha({
@@ -42,7 +44,6 @@ gulp.task("test:unit", () => {
       reporter: "spec",
       timeout: 5000,
       ignoreLeaks: false,
-      r: "test/unit/spec_helper.js",
       recursive: true,
       harmony: true
     }))
@@ -50,6 +51,9 @@ gulp.task("test:unit", () => {
 });
 
 gulp.task("test:gen", () => {
+
+  process.env.NODE_ENV = "test";
+
   return gulp
     .src(["test/generative/**/*.js"], { read: false })
     .pipe(mocha({
@@ -57,7 +61,6 @@ gulp.task("test:gen", () => {
       reporter: "spec",
       timeout: 5000,
       ignoreLeaks: false,
-      r: "test/generative/spec_helper.js",
       recursive: true,
       harmony: true
     }))
@@ -65,6 +68,9 @@ gulp.task("test:gen", () => {
 });
 
 gulp.task("test:inter", () => {
+
+  process.env.NODE_ENV = "test";
+
   return gulp
     .src(["test/integration/**/*.js"], { read: false })
     .pipe(mocha({
@@ -72,7 +78,6 @@ gulp.task("test:inter", () => {
       reporter: "spec",
       timeout: 5000,
       ignoreLeaks: false,
-      r: "test/integration/spec_helper.js",
       recursive: true,
       harmony: true
     }))
@@ -80,14 +85,16 @@ gulp.task("test:inter", () => {
 });
 
 gulp.task("test:sys", () => {
+
+  process.env.NODE_ENV = "test";
+
   return gulp
     .src(["test/system/**/*.js"], { read: false })
     .pipe(mocha({
       compilers: "js:babel-core/register",
       reporter: "spec",
-      timeout: 30000,
+      timeout: 15000,
       ignoreLeaks: false,
-      r: "test/system/spec_helper.js",
       recursive: true,
       harmony: true
     }))
@@ -100,7 +107,7 @@ gulp.task("test", callback => {
     "test:unit",
     "test:gen",
     "test:inter",
-    "test:system",
+    "test:sys",
     callback
   );
 });
@@ -143,6 +150,32 @@ gulp.task("jsdoc", ["clean:jsdoc"], () => {
     .pipe(shell(["./node_modules/.bin/jsdoc -t ./node_modules/ink-docstrap/template -c jsdoc.conf.json"])); // eslint-disable-line max-len
 });
 
+gulp.task("dist:compile:package", () => {
+  return gulp
+    .src(["package.json"])
+    .pipe(jeditor((json) => {
+      delete json.devDependencies; // eslint-disable-line prefer-reflect
+      return json; // must return JSON object.
+    }))
+    .pipe(gulp.dest("dist"));
+});
+
+gulp.task("dist:compile", ["dist:compile:package"], () => {
+  return gulp
+    .src(["server/**/*", "config/**/*", "app.js", "server.js", "cloud.js"], { base: "./" })
+    .pipe(babel({
+      presets: ["es2015"]
+    }))
+    .pipe(gulp.dest("dist"));
+});
+
+gulp.task("clean:dist", () => {
+  return del([
+    "dist/**/*",
+    "!dist/.avoscloud"
+  ]);
+});
+
 gulp.task("clean:jsdoc", () => {
 
   return del([
@@ -181,14 +214,17 @@ gulp.task("help", () => { // eslint-disable-line max-statements
   gutil.log("Run only system tests");
   gutil.log("$ gulp test:sys");
   gutil.log("");
+  gutil.log("Watch tests");
+  gutil.log("$ gulp test:w");
+  gutil.log("");
   gutil.log("Watch lint and tests");
   gutil.log("$ gulp watch");
   gutil.log("");
   gutil.log("Generate jsdoc");
   gutil.log("$ gulp jsdoc");
   gutil.log("");
-  gutil.log("Watch tests");
-  gutil.log("$ gulp test:w");
+  gutil.log("Compile server");
+  gutil.log("$ gulp dist:compile");
   gutil.log("");
   gutil.log(`--- ${pkg.name} Version: ${pkg.version} ---`);
   gutil.log("");

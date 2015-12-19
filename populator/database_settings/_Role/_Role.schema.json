@@ -1,0 +1,38 @@
+{
+  "schema": {
+    "updatedAt": {
+      "read_only": true,
+      "type": "Date"
+    },
+    "createdAt": {
+      "read_only": true,
+      "type": "Date"
+    },
+    "ACL": {
+      "required": true,
+      "type": "ACL"
+    },
+    "objectId": {
+      "type": "String"
+    },
+    "name": {
+      "required": true,
+      "type": "String"
+    },
+    "users": {
+      "className": "_User",
+      "type": "Relation"
+    },
+    "roles": {
+      "className": "_Role",
+      "type": "Relation"
+    },
+    "isActive": {
+      "required": true,
+      "default": true,
+      "read_only": false,
+      "type": "Boolean",
+      "v": 1
+    }
+  }
+}

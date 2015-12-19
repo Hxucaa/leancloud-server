@@ -56,28 +56,6 @@ export const beforeSave = function(request, response) {
   user.set("ageGroup", ageGroup);
 
   response.success();
-
-
-  //const roleQuery = new AV.Query(AV.Role)
-  //roleQuery.equalTo("name", "User")
-  //query.find()
-  //  .then(result => {
-  //    if (result.length === 1) {
-  //
-  //    }
-  //    else if (result.length === 0) {
-  //      const roleACL = new AV.ACL()
-  //      roleACL.setPublicReadAccess(true)
-  //      roleACL.setPublicWriteAccess(false)
-  //      const userRole = new AV.Role("User", roleACL)
-  //
-  //
-  //    }
-  //  }, err => {
-  //    response.error(err)
-  //  })
-
-
 };
 
 export const afterSave = function(request) {
@@ -95,28 +73,52 @@ export const afterSave = function(request) {
    * Operation
    */
 
-  (async () => {
-    try {
-      /**
-       * Assign either User or Merchant role to the user.
-       */
-      const roleQuery = new AV.Query(AV.Role);
+  /**
+   * Assign either User or Merchant role to the user.
+   */
+  const roleQuery = new AV.Query(AV.Role);
 
-      if (type === UserType.User) {
-        roleQuery.equalTo("name", "User");
-      }
-      else {
-        roleQuery.equalTo("name", "Merchant");
-      }
-      const roleQueryResult = await roleQuery.first();
-
-      roleQueryResult.getUsers().add(user);
-      await roleQueryResult.save();
-    }
-    catch (err) {
+  if (type === UserType.User) {
+    roleQuery.equalTo("name", "User");
+  }
+  else {
+    roleQuery.equalTo("name", "Merchant");
+  }
+  roleQuery.first()
+    .then(res => {
+      res.getUsers().add(user);
+      return res.save();
+    })
+    .then(null, err => {
       console.error(err);
-    }
-  })();
+    });
+
+  //roleQueryResult.getUsers().add(user);
+  //await ;
+  //
+  //(async () => {
+  //  try {
+  //    /**
+  //     * Assign either User or Merchant role to the user.
+  //     */
+  //    const roleQuery = new AV.Query(AV.Role);
+  //
+  //    if (type === UserType.User) {
+  //      roleQuery.equalTo("name", "User");
+  //    }
+  //    else {
+  //      roleQuery.equalTo("name", "Merchant");
+  //    }
+  //    const roleQueryResult = await roleQuery.first();
+  //
+  //    roleQueryResult.getUsers().add(user);
+  //    await roleQueryResult.save();
+  //  }
+  //  catch (err) {
+  //    console.error(err);
+  //  }
+  //})();
+
   //(async () => {
   //  try {
   //    // create UserStatistics
@@ -185,31 +187,31 @@ export const beforeUpdate = function(request, response) {
   response.success();
 };
 
-export const beforeDelete = function(request, response) {
-  /**
-   *  Parameters
-   */
-  //const user = request.object;
-
-  /**
-   *  Operation
-   */
-  response.success();
-};
-
-export const afterDelete = function(request) {
-
-  /**
-   * Parameters
-   */
-  //const user = request.object;
-
-  /**
-   * Validation
-   */
-
-
-  /**
-   * Operation
-   */
-};
+//export const beforeDelete = function(request, response) {
+//  /**
+//   *  Parameters
+//   */
+//  //const user = request.object;
+//
+//  /**
+//   *  Operation
+//   */
+//  response.success();
+//};
+//
+//export const afterDelete = function(request) {
+//
+//  /**
+//   * Parameters
+//   */
+//  //const user = request.object;
+//
+//  /**
+//   * Validation
+//   */
+//
+//
+//  /**
+//   * Operation
+//   */
+//};

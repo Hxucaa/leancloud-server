@@ -1,0 +1,161 @@
+{
+  "schema": {
+    "salt": {
+      "user_private": true,
+      "type": "String"
+    },
+    "address": {
+      "user_private": true,
+      "className": "Address",
+      "type": "Pointer",
+      "v": 1
+    },
+    "email": {
+      "user_private": true,
+      "type": "String"
+    },
+    "sessionToken": {
+      "user_private": true,
+      "type": "String"
+    },
+    "ageGroup": {
+      "required": true,
+      "read_only": true,
+      "type": "Number",
+      "v": 1
+    },
+    "updatedAt": {
+      "read_only": true,
+      "user_private": true,
+      "type": "Date"
+    },
+    "latestLocation": {
+      "type": "GeoPoint",
+      "v": 1
+    },
+    "ACL": {
+      "required": true,
+      "user_private": true,
+      "type": "ACL"
+    },
+    "password": {
+      "required": true,
+      "user_private": true,
+      "type": "String"
+    },
+    "objectId": {
+      "type": "String"
+    },
+    "aaCount": {
+      "default": 0,
+      "required": true,
+      "auto_increment": false,
+      "read_only": true,
+      "type": "Number",
+      "v": 1
+    },
+    "nickname": {
+      "required": true,
+      "type": "String",
+      "v": 1
+    },
+    "toGoCount": {
+      "default": 0,
+      "required": true,
+      "auto_increment": false,
+      "read_only": true,
+      "type": "Number",
+      "v": 1
+    },
+    "username": {
+      "required": true,
+      "user_private": true,
+      "type": "String"
+    },
+    "birthday": {
+      "user_private": true,
+      "required": true,
+      "type": "Date",
+      "v": 1
+    },
+    "createdAt": {
+      "read_only": true,
+      "user_private": true,
+      "type": "Date"
+    },
+    "type": {
+      "hidden": true,
+      "required": true,
+      "auto_increment": false,
+      "default": 1,
+      "read_only": true,
+      "user_private": true,
+      "type": "Number",
+      "v": 1
+    },
+    "isActive": {
+      "required": true,
+      "default": true,
+      "hidden": true,
+      "read_only": true,
+      "user_private": true,
+      "type": "Boolean",
+      "v": 1
+    },
+    "emailVerified": {
+      "default": false,
+      "read_only": true,
+      "required": true,
+      "user_private": true,
+      "type": "Boolean"
+    },
+    "horoscope": {
+      "required": true,
+      "read_only": true,
+      "type": "Number",
+      "v": 1
+    },
+    "mobilePhoneNumber": {
+      "user_private": true,
+      "type": "String"
+    },
+    "status": {
+      "hidden": true,
+      "required": true,
+      "default": 1,
+      "read_only": true,
+      "user_private": true,
+      "type": "Number",
+      "v": 1
+    },
+    "treatCount": {
+      "default": 0,
+      "required": true,
+      "auto_increment": false,
+      "read_only": true,
+      "type": "Number",
+      "v": 1
+    },
+    "coverPhoto": {
+      "required": true,
+      "type": "File",
+      "v": 1
+    },
+    "gender": {
+      "required": true,
+      "type": "Number",
+      "v": 1
+    },
+    "authData": {
+      "user_private": true,
+      "type": "Object"
+    },
+    "mobilePhoneVerified": {
+      "default": false,
+      "read_only": true,
+      "required": true,
+      "user_private": true,
+      "type": "Boolean"
+    }
+  }
+}

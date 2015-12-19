@@ -1,0 +1,6 @@
+{ "results": [
+
+  {"objectId":"566d1f1200b0ee7f997880ed","updatedAt":"2015-12-13T07:32:34.745Z","createdAt":"2015-12-13T07:32:34.437Z","name":"Admin","ACL":{"*":{"read":true}}},
+  {"objectId":"566d1f1060b202590bdd5cef","updatedAt":"2015-12-13T07:32:34.745Z","createdAt":"2015-12-13T07:32:32.864Z","name":"User","ACL":{"*":{"read":true}}},
+  {"objectId":"566d1f1060b20de5462f3e7e","updatedAt":"2015-12-13T07:32:34.745Z","createdAt":"2015-12-13T07:32:32.864Z","name":"Curator","ACL":{"*":{"read":true}}},
+  {"objectId":"566d1f1060b262671c66bb39","updatedAt":"2015-12-13T07:32:34.746Z","createdAt":"2015-12-13T07:32:32.864Z","name":"Merchant","ACL":{"*":{"read":true}}}] }

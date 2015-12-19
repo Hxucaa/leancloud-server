@@ -1,0 +1,55 @@
+{
+  "schema": {
+    "regionNameC": {
+      "read_only": true,
+      "required": true,
+      "type": "String",
+      "v": 1
+    },
+    "updatedAt": {
+      "read_only": true,
+      "type": "Date"
+    },
+    "ACL": {
+      "required": true,
+      "type": "ACL"
+    },
+    "objectId": {
+      "type": "String"
+    },
+    "createdAt": {
+      "read_only": true,
+      "type": "Date"
+    },
+    "regionNameE": {
+      "read_only": true,
+      "required": false,
+      "type": "String",
+      "v": 1
+    },
+    "level": {
+      "read_only": true,
+      "required": true,
+      "type": "Number",
+      "v": 1
+    },
+    "upperRegion": {
+      "read_only": true,
+      "required": true,
+      "type": "String",
+      "v": 1
+    },
+    "code": {
+      "read_only": true,
+      "required": true,
+      "type": "String",
+      "v": 1
+    },
+    "countryCode": {
+      "read_only": true,
+      "required": true,
+      "type": "String",
+      "v": 1
+    }
+  }
+}

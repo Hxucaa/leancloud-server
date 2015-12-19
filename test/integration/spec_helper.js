@@ -23,8 +23,12 @@ global.Fixture = Fixture;
 
 // Initialize Leancloud SDK
 AV.initialize(secret.test.APP_ID, secret.test.APP_KEY, secret.test.MASTER_KEY);
+
+if (process.env.NODE_ENV === "test") {
+  // 在测试环境
+  AV.setProduction(false);
+}
 // 如果不希望使用 masterKey 权限，可以将下面一行删除
-//AV.useAVCloudUS();
 //AV.Cloud.useMasterKey();
 
 

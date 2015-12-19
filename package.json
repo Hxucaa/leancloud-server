@@ -1,11 +1,16 @@
 {
   "name": "leancloud-server",
-  "description": "Leancloud Server",
-  "version": "0.0.1",
+  "description": "Leancloud server code and cloud code.",
+  "version": "0.1.0",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "ssh://git@dev.lai.io:2345/diffusion/LCS/leancloud-server.git"
   },
+  "keywords": [
+    "LeanCloud",
+    "Cloud Code"
+  ],
+  "author": "Lance Zhu",
   "babel": {
     "presets": [
       "es2015",
@@ -22,30 +27,31 @@
     "test": "npm run test:unit && npm run test:gen && npm run test:inte && npm run test:sys",
     "plato": "node_modules/.bin/plato -r -t \"Cloud Code\" -x .json -d report server/**/*.js test/**/*.js app.js cloud.js server.js",
     "lint": "node_modules/.bin/eslint . --fix",
-    "deploy": "node_modules/.bin/avoscloud deploy",
-    "publish": "node_modules/.bin/avoscloud publish",
     "jsdoc": "rm -rf ./jsdoc && ./node_modules/.bin/jsdoc -t ./node_modules/ink-docstrap/template -c jsdoc.conf.json",
-    "populator": "node --harmony populator/index.js"
+    "dist:compile": "node_modules/.bin/gulp dist:compile",
+    "deploy:avos": "npm run dist:compile && node_modules/.bin/avoscloud deploy -f dist",
+    "publish:avos": "node_modules/.bin/avoscloud publish -f dist",
+    "populate": "node --harmony populator/index.js populate"
   },
   "dependencies": {
-    "babel-core": "^6.3.2",
-    "babel-polyfill": "^6.3.14",
-    "babel-preset-es2015": "^6.1.18",
-    "babel-preset-stage-3": "^6.1.18",
     "body-parser": "^1.14.1",
     "cloudmodel": "https://github.com/Hxucaa/cloudmodel.git",
     "cookie-parser": "^1.4.0",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
     "leanengine": "^0.2.0",
+    "leanengine-sniper": "^0.3.2",
     "lodash": "^3.10.1",
     "validator": "^4.3.0"
   },
   "devDependencies": {
     "avoscloud-code": "^0.9.1",
     "avoscloud-sdk": "1.0.0-rc5",
-    "babel": "^6.1.18",
-    "babel-eslint": "^4.1.6",
+    "babel-core": "^6.3.2",
+    "babel-eslint": "5.0.0-beta6",
+    "babel-polyfill": "^6.3.14",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-stage-3": "^6.1.18",
     "babel-root-import": "^3.1.0",
     "chai": "^3.4.1",
     "chai-as-promised": "^5.1.0",
@@ -54,13 +60,15 @@
     "del": "^2.1.0",
     "docco": "^0.7.0",
     "eslint": "^1.9.0",
-    "eslint-plugin-import": "^0.11.0",
+    "eslint-plugin-import": "^0.12.1",
     "eslint-plugin-mocha": "^1.1.0",
     "eslint-watch": "^2.1.4",
     "faker": "^3.0.1",
     "getmodule": "^1.0.0",
     "gulp": "^3.9.0",
+    "gulp-babel": "^6.1.1",
     "gulp-eslint": "^1.1.1",
+    "gulp-json-editor": "^2.2.1",
     "gulp-shell": "^0.5.1",
     "gulp-spawn-mocha": "^2.2.1",
     "gulp-util": "^3.0.7",

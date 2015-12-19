@@ -1,0 +1,82 @@
+{
+  "schema": {
+    "description": {
+      "required": true,
+      "type": "String",
+      "v": 1
+    },
+    "address": {
+      "required": true,
+      "className": "Address",
+      "type": "Pointer",
+      "v": 1
+    },
+    "email": {
+      "type": "String",
+      "v": 1
+    },
+    "updatedAt": {
+      "read_only": true,
+      "type": "Date"
+    },
+    "ACL": {
+      "required": true,
+      "type": "ACL"
+    },
+    "phone": {
+      "required": true,
+      "type": "String",
+      "v": 1
+    },
+    "websiteUrl": {
+      "type": "String",
+      "v": 1
+    },
+    "name": {
+      "required": true,
+      "type": "String",
+      "v": 1
+    },
+    "objectId": {
+      "type": "String"
+    },
+    "aaCount": {
+      "required": true,
+      "default": 0,
+      "read_only": true,
+      "type": "Number",
+      "v": 1
+    },
+    "toGoCount": {
+      "default": 0,
+      "required": true,
+      "read_only": true,
+      "type": "Number",
+      "v": 1
+    },
+    "createdAt": {
+      "read_only": true,
+      "type": "Date"
+    },
+    "isActive": {
+      "required": true,
+      "default": true,
+      "hidden": true,
+      "read_only": true,
+      "type": "Boolean",
+      "v": 1
+    },
+    "coverImage": {
+      "required": true,
+      "type": "File",
+      "v": 1
+    },
+    "treatCount": {
+      "default": 0,
+      "required": true,
+      "read_only": true,
+      "type": "Number",
+      "v": 1
+    }
+  }
+}

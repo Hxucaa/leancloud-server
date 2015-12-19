@@ -39,9 +39,4 @@ case "production":
 default:
 }
 
-//if (process.env.NODE_ENV === "development") {
-//  console.log("wtffffff")
-//  config.whiteOrigins.push("http://localhost")
-//}
-
 export default config;

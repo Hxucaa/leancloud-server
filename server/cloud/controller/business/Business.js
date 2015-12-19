@@ -18,13 +18,13 @@ export const beforeSave = function(request, response) {
    */
   const business = request.object;
 
-  const userId = business.get("userId");
-  const companyId = business.get("companyId");
+  //const userId = business.get("user");
+  //const companyId = business.get("company");
   const name = business.get("name");
   const phone = business.get("phone");
   const email = business.get("email");
   const websiteUrl = business.get("websiteUrl");
-  const addressId = business.get("addressId");
+  //const address = business.get("address");
   //const coverImage = business.get("coverImage");
   const description = business.get("description");
 
@@ -32,17 +32,14 @@ export const beforeSave = function(request, response) {
    * Validation
    */
 
-  if (!userId) {
-    response.error("User ID cannot be blank.");
-  }
+  //if (!user) {
+  //  response.error("User ID cannot be blank.");
+  //}
+  //
+  //if (!company) {
+  //  response.error("Company ID cannot be blank.");
+  //}
 
-  if (!companyId) {
-    response.error("Company ID cannot be blank.");
-  }
-
-  if (!name) {
-    response.error("Name cannot be blank.");
-  }
   // TODO: 20 characters is kind of short for a name
   if (name > 20) {
     response.error("Name must be 20 characters or fewer.");
@@ -69,15 +66,6 @@ export const beforeSave = function(request, response) {
   if (!isValidURL) {
     response.error("Invalid website URL.");
   }
-
-  if (!addressId) {
-    response.error("Address ID cannot be blank.");
-  }
-  if (addressId.length > 20) {
-    response.error("Address ID must be 20 characters or fewer.");
-  }
-
-  // TODO: coverImage validation
 
   if (description.length > 500) {
     response.error("Description must be 500 characters or fewer.");

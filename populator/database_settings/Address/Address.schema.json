@@ -1,0 +1,52 @@
+{
+  "schema": {
+    "fullAddress": {
+      "read_only": true,
+      "required": true,
+      "type": "String",
+      "v": 1
+    },
+    "updatedAt": {
+      "read_only": true,
+      "type": "Date"
+    },
+    "ACL": {
+      "type": "ACL"
+    },
+    "objectId": {
+      "type": "String"
+    },
+    "createdAt": {
+      "read_only": true,
+      "type": "Date"
+    },
+    "street": {
+      "required": true,
+      "type": "String",
+      "v": 1
+    },
+    "region": {
+      "required": true,
+      "className": "L_Region",
+      "type": "Pointer",
+      "v": 1
+    },
+    "isActive": {
+      "hidden": true,
+      "read_only": true,
+      "required": true,
+      "default": true,
+      "type": "Boolean",
+      "v": 1
+    },
+    "postalCode": {
+      "type": "String",
+      "v": 1
+    },
+    "geoLocation": {
+      "required": true,
+      "type": "GeoPoint",
+      "v": 1
+    }
+  }
+}

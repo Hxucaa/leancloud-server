@@ -4,21 +4,25 @@ const domain = require("domain");
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
-//import AV from "leanengine";
-//import sniper from "leanengine-sniper";
+const AV = require("leanengine");
+const sniper = require("leanengine-sniper");
 
-// babel 编译
-require("babel-core/register");
-require("babel-polyfill");
-// All modules after this line will be transpiled, but not the current file.
-// 在这句后面引入的模块，都将会自动通过 babel 编译，但当前文件不会被 babel 编译。
+// 上传至Leancloud后,不再通过babel进行编译
+if (!(process.env.LC_APP_ENV === "stage" || process.env.LC_APP_ENV === "production")) {
+
+  // babel 编译
+  require("babel-core/register");
+  require("babel-polyfill");
+  // All modules after this line will be transpiled, but not the current file.
+  // 在这句后面引入的模块，都将会自动通过 babel 编译，但当前文件不会被 babel 编译。
+}
 
 //import cloud from "./cloud.js";
 const cloud = require("./cloud.js");
 
 // 各个模块
 const cors = require("./config/cors");
-//const secret = require("./config/secret");
+//const cookieSecret = require("./config/cookie");
 
 const app = express();
 
@@ -34,10 +38,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
-//app.use(AV.Cloud.CookieSession({ secret: secret.cookieSecret, maxAge: 3600000, fetchUser: true }));
+//app.use(AV.Cloud.CookieSession({ secret: cookieSecret.secret, maxAge: 3600000, fetchUser: true }));
 
 // 详情请看: https://github.com/leancloud/leanengine-sniper
-//app.use(sniper({ AV }));
+app.use(sniper({ AV }));
 
 // 未处理异常捕获 middleware
 app.use((req, res, next) => {
