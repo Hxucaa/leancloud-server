@@ -25,6 +25,7 @@
       "v": 1
     },
     "updatedAt": {
+      "required": false,
       "read_only": true,
       "user_private": true,
       "type": "Date"
@@ -79,6 +80,7 @@
       "v": 1
     },
     "createdAt": {
+      "required": false,
       "read_only": true,
       "user_private": true,
       "type": "Date"
@@ -91,6 +93,10 @@
       "read_only": true,
       "user_private": true,
       "type": "Number",
+      "v": 1
+    },
+    "whatsUp": {
+      "type": "String",
       "v": 1
     },
     "isActive": {

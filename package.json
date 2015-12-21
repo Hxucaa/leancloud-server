@@ -1,16 +1,17 @@
 {
   "name": "leancloud-server",
   "description": "Leancloud server code and cloud code.",
-  "version": "0.1.0",
+  "version": "0.1.0.1",
   "repository": {
     "type": "git",
     "url": "ssh://git@dev.lai.io:2345/diffusion/LCS/leancloud-server.git"
   },
+  "license": "LicenseRef-LICENSE",
   "keywords": [
     "LeanCloud",
     "Cloud Code"
   ],
-  "author": "Lance Zhu",
+  "author": "Lance Zhu <lzhu@lai.io>",
   "babel": {
     "presets": [
       "es2015",
