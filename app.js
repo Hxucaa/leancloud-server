@@ -41,7 +41,7 @@ app.use(bodyParser.urlencoded({
 //app.use(AV.Cloud.CookieSession({ secret: cookieSecret.secret, maxAge: 3600000, fetchUser: true }));
 
 // 详情请看: https://github.com/leancloud/leanengine-sniper
-app.use(sniper({ AV }));
+app.use(sniper({ AV: AV }));  // eslint-disable-line object-shorthand
 
 // 未处理异常捕获 middleware
 app.use((req, res, next) => {

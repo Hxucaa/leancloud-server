@@ -1,4 +1,4 @@
---reporter spec
+--reporter nyan
 --timeout 5000
 --check-leaks
 --recursive

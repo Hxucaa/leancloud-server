@@ -6,22 +6,18 @@
 
 //import * as _ from "lodash";
 import AV from "leanengine";
-import * as Rules from "./rules";
 import { calculateHoroscope, calculateAgeGroup } from "./utility";
+import { processValidation } from "../utility/processValidation";
+import validationstack from "validation-stack";
+import cloudmodel from "cloudmodel";
 
-const CM = require("cloudmodel")(AV); // eslint-disable-line import/no-require
-//const User = CM.User;
+const VS = validationstack(AV);
+const UserValidation = VS.UserValidation;
+const CM = cloudmodel(AV);
 const UserType = CM.UserType;
 
-function processValidation(response, validation) {
-  validation.forEach( v => {
-    if (v.isFailure) {
-      response.error(v.value);
-    }
-  });
-}
-
 export const beforeSave = function(request, response) {
+
   /**
    * Parameters
    */
@@ -37,11 +33,11 @@ export const beforeSave = function(request, response) {
    */
   processValidation(response,
     [
-      Rules.verifyUsername(username),
-      Rules.verifyType(type),
+      UserValidation.verifyUsername(username),
+      UserValidation.verifyType(type),
       //Rules.verifyStatus(status),
-      Rules.verifyGender(gender),
-      Rules.verifyBirthday(birthday)
+      UserValidation.verifyGender(gender),
+      UserValidation.verifyBirthday(birthday)
     ]
   );
 
@@ -167,10 +163,10 @@ export const beforeUpdate = function(request, response) {
    */
   processValidation(response,
     [
-      Rules.verifyType(type),
+      UserValidation.verifyType(type),
       //Rules.verifyStatus(status),
-      Rules.verifyGender(gender),
-      Rules.verifyBirthday(birthday)
+      UserValidation.verifyGender(gender),
+      UserValidation.verifyBirthday(birthday)
     ]
   );
 

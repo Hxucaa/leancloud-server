@@ -9,7 +9,7 @@ import chaiAsPromised from "chai-as-promised";
 import AV from "avoscloud-sdk";
 import secret from "~/config/secret";
 
-import * as Fixture from "../fixture/index";
+import * as Fixture from "./fixture/index";
 
 chai.should();
 chai.use(chaiAsPromised);

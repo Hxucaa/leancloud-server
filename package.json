@@ -1,7 +1,7 @@
 {
   "name": "leancloud-server",
   "description": "Leancloud server code and cloud code.",
-  "version": "0.1.0.1",
+  "version": "0.1.1",
   "repository": {
     "type": "git",
     "url": "ssh://git@dev.lai.io:2345/diffusion/LCS/leancloud-server.git"
@@ -21,14 +21,12 @@
   "main": "server.js",
   "scripts": {
     "start": "node --harmony server.js",
-    "test:unit": "NODE_ENV=test node_modules/.bin/mocha --compilers js:babel-core/register test/unit --opts test/mocha.opts --harmony",
-    "test:gen": "NODE_ENV=test node_modules/.bin/mocha --compilers js:babel-core/register test/generative --opts test/mocha.opts --harmony ",
-    "test:int": "NODE_ENV=test node_modules/.bin/mocha --compilers js:babel-core/register test/integration --opts test/mocha.opts --harmony ",
-    "test:sys": "NODE_ENV=test node_modules/.bin/mocha --compilers js:babel-core/register test/system --opts test/mocha.opts --harmony --timeout 15000",
-    "test": "npm run test:unit && npm run test:gen && npm run test:int && npm run test:sys",
+    "test:int": "node_modules/.bin/gulp test:int",
+    "test:sys": "node_modules/.bin/gulp test:sys",
+    "test": "npm run test:int && npm run test:sys",
     "plato": "node_modules/.bin/plato -r -t \"Cloud Code\" -x .json -d report server/**/*.js test/**/*.js app.js cloud.js server.js",
     "lint": "node_modules/.bin/eslint . --fix",
-    "jsdoc": "rm -rf ./jsdoc && ./node_modules/.bin/jsdoc -t ./node_modules/ink-docstrap/template -c jsdoc.conf.json",
+    "jsdoc": "node_modules/.bin/gulp jsdoc",
     "dist:compile": "node_modules/.bin/gulp dist:compile",
     "deploy:avos": "npm run dist:compile && node_modules/.bin/avoscloud deploy -f dist",
     "publish:avos": "node_modules/.bin/avoscloud publish -f dist",
@@ -36,7 +34,8 @@
   },
   "dependencies": {
     "body-parser": "^1.14.1",
-    "cloudmodel": "https://github.com/Hxucaa/cloudmodel.git",
+    "cloudmodel": "https://github.com/ZenChat/cloudmodel.git",
+    "validation-stack": "https://github.com/ZenChat/validation-stack.git",
     "cookie-parser": "^1.4.0",
     "ejs": "^2.3.4",
     "express": "^4.13.3",

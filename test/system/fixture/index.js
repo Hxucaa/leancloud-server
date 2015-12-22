@@ -3,8 +3,9 @@
  */
 
 "use strict";
-import * as ValidationError from "./ValidationError";
+
+import UserFixture from "./User.fixture";
 
 export {
-  ValidationError
+  UserFixture
 };

@@ -11,8 +11,7 @@ import secret from "~/config/secret";
 import supertest from "supertest";
 import defaults from "superagent-defaults";
 import app from "~/app";
-
-import * as Fixture from "../fixture/index";
+import * as Fixture from "./fixture/index";
 
 chai.should();
 chai.use(chaiAsPromised);
