@@ -2,7 +2,6 @@
 Server code written for LeanCloud based on the so called cloud code 3.0. 
 
 # Folder Structure
-
 ```
 <<Root of the project>>
 |   config  <<Configurations>>
@@ -38,7 +37,6 @@ Server code written for LeanCloud based on the so called cloud code 3.0.
 |   package.json    <<Node.js package.json>>  DO NOT TOUCH unless you know what you are doing
 |   README.md   <<This file>>
 └── server.js   <<Starting point of server>>
-
 ```
 
 # Getting started
