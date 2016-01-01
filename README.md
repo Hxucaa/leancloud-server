@@ -1,5 +1,6 @@
+
 # LeanCloud-server
-Server code written for LeanCloud based on the so called cloud code 3.0. 
+Server code written for LeanCloud based on the so called cloud code 3.0.
 
 # Folder Structure
 ```
@@ -123,12 +124,25 @@ Before you start this section, there's one thing you have to keep in mind. The s
 
 
 # Debug and testing
+Due to restrictions inherent to BaaS platform, debugging cloud code is not as straightforward as that for custom server stack. Specifically, you do not have complete control of the environment. Some compromises have to be made during testing. That being said there are definitely tools to go around the problems.
 
 ## Individually debug and test cloud hooks and cloud functions
 
-Cloud code 3.0 allows developers to, partially, test code locally instead of having to deploy the code after each change. The command-line tool, [avoscloud-code-command](https://github.com/leancloud/avoscloud-code-command), allows you to launch the server locally. Test can be run against the locally run server. This environment is useful in that it allows developers to individually debug and test cloud hooks and cloud functions. Once the server is launched with the command `avoscloud` at command-line, a local debug web page can be reached at [debug page](http://localhost:3001). On that page, you can individually select cloud hooks and cloud functions, and manually enter JSON data to debug.
+Cloud code 3.0 allows developers to, partially, test server code on local machine. Check whether the command-line tool, [avoscloud-code-command](https://github.com/leancloud/avoscloud-code-command), is installed before proceeding.
 
-There is no way to point `avoscloud-sdk` to target the local mock server, therefore, tests have to be written as raw JSON request sent over network. Take a look at the code in `test/ingegration`. A library called [superagent](https://github.com/visionmedia/superagent) is used to handle raw network request.
+To launched the server locally, at command line enter `avoscloud`. If it asks for `app ID` and `master key`, find out on leancloud's website. A local debug web page can be reached at [debug page](http://localhost:3001). On that page, you can individually select cloud hooks and cloud functions, and manually enter JSON data to debug. For example, to test a cloud function, you'd select the function from the dropdown menu, then enter data in JSON format in the textbox. Run the command and the webpage will return result. This also works for cloud hooks.
+
+**PROS:**
+
+- Test cloud hooks and cloud functions in isolation. For example, testing `beforeUpdate` will not trigger `afterUpdate`.
+- Faster feedback. No need to deploy to LeanCloud.
+
+**CONS:**
+
+- Manually craft JSON data can be tedious very soon.
+- The local server is a mock server. Hence there's no guaruntee it functions exactly the same as production environment.
+
+Tests can be written against cloud hooks and functions individually on the local moc server. Conceptually the tests behave similarly to the [debug page](http://localhost:3001). You'd craft JSON request in code and send it to local mock server. Take a look at the code in `test/ingegration`. [superagent](https://github.com/visionmedia/superagent) is used to handle raw JSON network request.
 
 **NOTE:** Make sure you enter `nvm use` to switch to the correct Node.js version.
 
@@ -137,9 +151,28 @@ There is no way to point `avoscloud-sdk` to target the local mock server, theref
 
 ## System level debug and test
 
-Now the above method is only good for testing hooks and functions individually. However, when working with cloud code in production environment, the hooks and cloud functions work in conjunction. For example, a request coming in to update a User record will always trigger `beforeUpdate` and `afterUpdate`. In addition, the table schema also comes into effect. Therefore, in this case tests have to utilize `avoscloud-sdk`, basically to simulate the kind of requests a client can send to the database. Of course you have to deploy the server code to LeanCloud before running system test.
+Now the above method is only good for testing hooks and functions in isolation. However, it does not guaruntee that they'd work correctly together in production. For example, a request coming in to update a User record will always trigger `beforeUpdate` and `afterUpdate`. And if code in `beforeUpdate` also saves data in another table, it will trigger another set of hooks. In addition, the table schema also comes into effect.
 
+There's a similar, above mentioned, debug page for system level debug. Click on "帮助" on the top menu bar. In the dropdown menu click on "在线API测试工具". This is very similar to the local debug page. **NOTE** you have publish server code to production environment in order to use this tool. To do that first deploy to test environment , `npm run deploy:avos`, then publish to production, `npm run publish:avos`.
+
+In system tests we utilize `avoscloud-sdk` to test againt the entire system. In essence we are basically simulating how clients would interact with server. Take a look at the code in `test/system` for examples.
+
+**PROS:**
+
+- High level of confidence in correctness. Basically running tests against production environment.
+
+**CONS:**
+
+- Have to deploy before running tests. Have to do it every time there's changes in server code.
+- Takes about 1 minute to deploy.
+- To use the online debug page, have to publish code.
+- Tests take longer to run due to network travel time.
+- Harder to write tests as a lot of factors, such as database schema, ACL, CLP, etc, come into play.
+
+Of course you have to deploy the server code to LeanCloud before running system test. The system tests environment has been configured to hit test environment only, so you don't have to publish to production environment each time.
+
+- To deploy: `npm run deploy:avos`.
 - To run system test: `gulp test:sys`.
--To run system test on file change: `gulp test:w`.
+- To run system test on file change: `gulp test:w`.
 
-The above two methods compliment each other. Debug and testing individually allows developers to iterate faster, and it ensures basic sanity individually. However, individually working components do not guarantee that they work correctly together. That is why a system level test is also important. The downside however is that system test is usually slow to run.
+The above two methods compliment each other. Debug and testing cloud hooks and function individually allows developers to iterate faster, and it ensures correctness on a unit level. However, individually working components do not guarantee that they work correctly together. That is why a system level test is also important. The downside however is that system test is usually slow to run.
