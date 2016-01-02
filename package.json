@@ -23,7 +23,7 @@
     "start": "node --harmony server.js",
     "test:int": "node_modules/.bin/gulp test:int",
     "test:sys": "node_modules/.bin/gulp test:sys",
-    "test": "npm run test:int && npm run test:sys",
+    "test": "npm run test:int",
     "plato": "node_modules/.bin/plato -r -t \"Cloud Code\" -x .json -d report server/**/*.js test/**/*.js app.js cloud.js server.js",
     "lint": "node_modules/.bin/eslint . --fix",
     "jsdoc": "node_modules/.bin/gulp jsdoc",
