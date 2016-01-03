@@ -1,5 +1,5 @@
+# LeanCloud-server [![Build Status](https://travis-ci.com/zenchatdev/LeancloudServer.svg?token=CbMcp6XxrHszmirShqM2&branch=master)](https://travis-ci.com/zenchatdev/LeancloudServer)
 
-# LeanCloud-server
 Server code written for LeanCloud based on the so called cloud code 3.0.
 
 # Folder Structure
