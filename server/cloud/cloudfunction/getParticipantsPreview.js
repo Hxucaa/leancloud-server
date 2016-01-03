@@ -1,7 +1,8 @@
 //import _ from "lodash";
 import AV from "leanengine";
+import cloudModel from "cloudmodel";
 
-import { Business, Participation } from "cloudmodel";
+const { Business, Participation } = cloudModel(AV);
 
 const prioritizeUsers = function(userArray) {
   const hasPicArray = userArray.filter(user => {
@@ -29,7 +30,7 @@ const prioritizeUsers = function(userArray) {
   }
 };
 
-export const getParticipantsPreview = function(request, response) {
+export default function getParticipantsPreview(request, response) {
   const businessID = request.params.business;
   const userArray = [];
 
@@ -54,4 +55,4 @@ export const getParticipantsPreview = function(request, response) {
     }, err => {
       response.error(err);
     });
-};
+}

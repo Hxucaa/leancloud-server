@@ -7,6 +7,8 @@
 //import _ from "lodash";
 
 import { calculateAgeGroup, calculateHoroscope } from "../helper/utility";
+// import cloudModel from "cloudmodel";
+// const { User } = cloudModel(AV);
 
 describe("User", () => {
 
@@ -18,6 +20,30 @@ describe("User", () => {
       userFixture = new Fixture.UserFixture();
       done();
     });
+
+    // afterEach((done) => {
+    //   AV.Cloud.useMasterKey();
+    //   const uQuery = new AV.Query(User);
+    //
+    //   uQuery.equalTo("username", userFixture.username);
+    //   uQuery.first({
+    //     success(user) {
+    //       if (user) {
+    //         user.destroy({
+    //           success(object) {
+    //             done();
+    //           }
+    //         });
+    //       }
+    //       else {
+    //         done();
+    //       }
+    //     },
+    //     error(err) {
+    //       done(err);
+    //     }
+    //   });
+    // });
 
     it("should be able to register user in the database", done => {
 

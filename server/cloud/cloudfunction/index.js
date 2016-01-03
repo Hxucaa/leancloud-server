@@ -3,8 +3,10 @@
  */
 
 "use strict";
-import * as getParticipantsPreview from "./getParticipantsPreview";
+import getParticipantsPreview from "./getParticipantsPreview";
+import checkUsernameAvailability from "./checkUsernameAvailability";
 
 export default {
-  getParticipantsPreview
+  getParticipantsPreview,
+  checkUsernameAvailability
 };

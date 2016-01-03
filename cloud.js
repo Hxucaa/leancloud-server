@@ -32,5 +32,6 @@ AV.Cloud.beforeUpdate("_User", Controller.User.beforeUpdate);
 // Cloud Functions
 ////////////////////////////////
 AV.Cloud.define("getParticipantsPreview", CloudFunction.getParticipantsPreview);
+AV.Cloud.define("checkUsernameAvailability", CloudFunction.checkUsernameAvailability);
 
 module.exports = AV.Cloud;
