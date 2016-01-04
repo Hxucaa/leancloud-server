@@ -12,12 +12,12 @@ if (!(process.env.LC_APP_ENV === "stage" || process.env.LC_APP_ENV === "producti
 
   // babel 编译
   require("babel-core/register");
-  require("babel-polyfill");
   // All modules after this line will be transpiled, but not the current file.
   // 在这句后面引入的模块，都将会自动通过 babel 编译，但当前文件不会被 babel 编译。
 }
 
-//import cloud from "./cloud.js";
+require("babel-polyfill");
+
 const cloud = require("./cloud.js");
 
 // 各个模块
