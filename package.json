@@ -35,14 +35,14 @@
   "dependencies": {
     "babel-polyfill": "^6.3.14",
     "body-parser": "^1.14.1",
-    "cloudmodel": "https://github.com/ZenChat/cloudmodel.git",
+    "cloudmodel": "https://github.com/ZenChat/cloudmodel.git#prod",
     "cookie-parser": "^1.4.0",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
     "leanengine": "^0.2.0",
     "leanengine-sniper": "^0.3.2",
     "lodash": "^3.10.1",
-    "validation-stack": "https://github.com/ZenChat/validation-stack.git",
+    "validation-stack": "https://github.com/ZenChat/validation-stack.git#prod",
     "validator": "^4.3.0"
   },
   "devDependencies": {
