@@ -1,7 +1,7 @@
 {
   "name": "leancloud-server",
   "description": "Leancloud server code and cloud code.",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "repository": {
     "type": "git",
     "url": "ssh://git@dev.lai.io:2345/diffusion/LCS/leancloud-server.git"
