@@ -10,8 +10,8 @@ import { calculateHoroscope, calculateAgeGroup } from "./utility";
 import { validateRequest, fieldRule } from "../utility/processValidation";
 import { validation, model } from "leancloud-utility";
 
-const { UserValidation } = validation();
-const { UserType } = model();
+const { UserValidation } = validation;
+const { UserType } = model;
 
 export const beforeSave = function(request, response) {
 

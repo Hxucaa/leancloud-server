@@ -5,6 +5,9 @@
 "use strict";
 
 //import _ from "lodash";
+import { model } from "leancloud-utility";
+
+const { User } = model;
 
 import { calculateAgeGroup, calculateHoroscope } from "../helper/utility";
 
@@ -45,7 +48,7 @@ describe("User", () => {
 
     it("should be able to register user in the database", done => {
 
-      return AV.User.signUp(userFixture.username, userFixture.password, {
+      return User.signUp(userFixture.username, userFixture.password, {
         "nickname": userFixture.nickname,
         "type": userFixture.type,
         "gender": userFixture.gender,
@@ -71,7 +74,7 @@ describe("User", () => {
     describe("with invalid inputs", () => {
 
       it("should not be able to register user in the database", done => {
-        return AV.User.signUp(userFixture.username, userFixture.password, {
+        return User.signUp(userFixture.username, userFixture.password, {
           "nickname": userFixture.nickname,
           "type": userFixture.type,
           "gender": userFixture.gender,

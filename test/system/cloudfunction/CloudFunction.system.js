@@ -1,5 +1,9 @@
 "use strict";
 
+import { model } from "leancloud-utility";
+
+const { User } = model;
+
 describe("CloudFunction", () => {
 
   describe("checkUsernameAvailability", () => {
@@ -22,7 +26,7 @@ describe("CloudFunction", () => {
     });
 
     it("should return false if the username is taken", done => {
-      return AV.User.signUp(userFixture.username, userFixture.password, {
+      return User.signUp(userFixture.username, userFixture.password, {
         "nickname": userFixture.nickname,
         "type": userFixture.type,
         "gender": userFixture.gender,

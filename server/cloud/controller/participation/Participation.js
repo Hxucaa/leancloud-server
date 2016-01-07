@@ -9,7 +9,7 @@
 import AV from "leanengine";
 import { model } from "leancloud-utility";
 
-const { Business } = model();
+const { Business } = model;
 
 export const beforeSave = function(request, response) {
   const participation = request.object;

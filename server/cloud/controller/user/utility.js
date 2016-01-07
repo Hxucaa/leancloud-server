@@ -2,7 +2,8 @@
 /* eslint-disable complexity, max-statements */
 
 import { model } from "leancloud-utility";
-const { AgeGroup, Horoscope } = model();
+
+const { AgeGroup, Horoscope } = model;
 
 /**
  * Convert birthday to horoscope.

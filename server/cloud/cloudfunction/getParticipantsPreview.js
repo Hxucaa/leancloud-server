@@ -4,7 +4,7 @@
 import AV from "leanengine";
 import { model } from "leancloud-utility";
 
-const { Business, Participation } = model();
+const { Business, Participation } = model;
 
 const prioritizeUsers = function(userArray) {
   const hasPicArray = userArray.filter(user => {

@@ -7,9 +7,6 @@ const bodyParser = require("body-parser");
 const AV = require("leanengine");
 const sniper = require("leanengine-sniper");
 
-// configure leancloud-utility
-require("leancloud-utility").configure(AV);
-
 // 上传至Leancloud后,不再通过babel进行编译
 if (!(process.env.LC_APP_ENV === "stage" || process.env.LC_APP_ENV === "production")) {
 

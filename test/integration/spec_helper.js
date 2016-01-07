@@ -12,7 +12,6 @@ import supertest from "supertest";
 import defaults from "superagent-defaults";
 import app from "~/app";
 import * as Fixture from "./fixture/index";
-import { configure } from "leancloud-utility";
 
 chai.should();
 chai.use(chaiAsPromised);
@@ -31,7 +30,6 @@ if (process.env.NODE_ENV === "test") {
 // 如果不希望使用 masterKey 权限，可以将下面一行删除
 //AV.Cloud.useMasterKey();
 
-configure(AV);
 
 // 端口一定要从环境变量 `LC_APP_PORT` 中获取。
 // LeanEngine 运行时会分配端口并赋值到该变量。

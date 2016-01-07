@@ -4,7 +4,7 @@
 import AV from "leanengine";
 import { model } from "leancloud-utility";
 
-const { User } = model();
+const { User } = model;
 
 export default async function checkUsernameAvailability(request, response) {
   const username = request.params.username;
