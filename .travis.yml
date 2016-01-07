@@ -1,7 +1,7 @@
 language: node_js
 
 script:
-- 'npm test'
+- 'npm run test:ci'
 
 notifications:
   slack:

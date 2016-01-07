@@ -7,14 +7,11 @@
 //import * as _ from "lodash";
 import AV from "leanengine";
 import { calculateHoroscope, calculateAgeGroup } from "./utility";
-import { processValidation } from "../utility/processValidation";
-import validationstack from "validation-stack";
-import cloudmodel from "cloudmodel";
+import { validateRequest, fieldRule } from "../utility/processValidation";
+import { validation, model } from "leancloud-utility";
 
-const VS = validationstack(AV);
-const UserValidation = VS.UserValidation;
-const CM = cloudmodel(AV);
-const UserType = CM.UserType;
+const { UserValidation } = validation();
+const { UserType } = model();
 
 export const beforeSave = function(request, response) {
 
@@ -23,7 +20,7 @@ export const beforeSave = function(request, response) {
    */
   const user = request.object;
   const username = user.get("username");
-  //const status = user.get("status");
+  const status = user.get("status");
   const gender = user.get("gender");
   const birthday = user.get("birthday");
   const type = user.get("type");
@@ -31,14 +28,13 @@ export const beforeSave = function(request, response) {
   /**
    * Validation
    */
-  processValidation(response,
-    [
-      UserValidation.verifyUsername(username),
-      UserValidation.verifyType(type),
-      //Rules.verifyStatus(status),
-      UserValidation.verifyGender(gender),
-      UserValidation.verifyBirthday(birthday)
-    ]
+
+  validateRequest(error => response.error(error),
+    fieldRule(username, UserValidation.verifyUsername),
+    fieldRule(type, UserValidation.verifyType),
+    fieldRule(status, UserValidation.verifyStatus),
+    fieldRule(gender, UserValidation.verifyGender),
+    fieldRule(birthday, UserValidation.verifyBirthday)
   );
 
   /**
@@ -89,32 +85,6 @@ export const afterSave = function(request) {
       console.error(err);
     });
 
-  //roleQueryResult.getUsers().add(user);
-  //await ;
-  //
-  //(async () => {
-  //  try {
-  //    /**
-  //     * Assign either User or Merchant role to the user.
-  //     */
-  //    const roleQuery = new AV.Query(AV.Role);
-  //
-  //    if (type === UserType.User) {
-  //      roleQuery.equalTo("name", "User");
-  //    }
-  //    else {
-  //      roleQuery.equalTo("name", "Merchant");
-  //    }
-  //    const roleQueryResult = await roleQuery.first();
-  //
-  //    roleQueryResult.getUsers().add(user);
-  //    await roleQueryResult.save();
-  //  }
-  //  catch (err) {
-  //    console.error(err);
-  //  }
-  //})();
-
   //(async () => {
   //  try {
   //    // create UserStatistics
@@ -153,23 +123,24 @@ export const beforeUpdate = function(request, response) {
    * Parameters
    */
   const user = request.object;
-  //const status = user.get("status");
+  const type = user.get("type");
+  const status = user.get("status");
   const gender = user.get("gender");
   const birthday = user.get("birthday");
-  const type = user.get("type");
 
   /**
    * Validation
    */
-  processValidation(response,
-    [
-      UserValidation.verifyType(type),
-      //Rules.verifyStatus(status),
-      UserValidation.verifyGender(gender),
-      UserValidation.verifyBirthday(birthday)
-    ]
+  validateRequest(error => response.error(error),
+    fieldRule(type, UserValidation.verifyType),
+    fieldRule(status, UserValidation.verifyStatus),
+    fieldRule(gender, UserValidation.verifyGender),
+    fieldRule(birthday, UserValidation.verifyBirthday)
   );
 
+  /**
+   * Operation
+   */
   if (birthday) {
 
     const horoscope = calculateHoroscope(birthday);

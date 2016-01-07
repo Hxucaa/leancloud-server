@@ -6,9 +6,6 @@
 
 import Validator from "validator";
 
-//const CM = require("cloudmodel");
-//const Business = CM.Business;
-
 /* eslint-disable complexity, max-statements */
 
 export const beforeSave = function(request, response) {

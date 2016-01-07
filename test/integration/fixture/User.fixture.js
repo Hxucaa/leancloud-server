@@ -20,6 +20,7 @@ export default class UserFixture {
       url: "http://ac-1qdney6b.qiniudn.com/3zLG4o0d27MsCQ0qHGRg4JUKbaXU2fiE35HdhC8j.txt",
       name: "hello.txt"
     };
+    this.whatsUp = faker.lorem.sentence();
   }
 
   getTrimmedBirthday() {

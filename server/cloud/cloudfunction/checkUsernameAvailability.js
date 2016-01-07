@@ -1,8 +1,10 @@
+"use strict";
+
 //import _ from "lodash";
 import AV from "leanengine";
-import cloudModel from "cloudmodel";
+import { model } from "leancloud-utility";
 
-const { User } = cloudModel(AV);
+const { User } = model();
 
 export default async function checkUsernameAvailability(request, response) {
   const username = request.params.username;

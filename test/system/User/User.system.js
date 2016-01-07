@@ -7,8 +7,6 @@
 //import _ from "lodash";
 
 import { calculateAgeGroup, calculateHoroscope } from "../helper/utility";
-// import cloudModel from "cloudmodel";
-// const { User } = cloudModel(AV);
 
 describe("User", () => {
 

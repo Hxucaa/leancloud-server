@@ -3,9 +3,6 @@
 //import _ from "lodash";
 //import Validator from "validator";
 
-//const CM = require("cloudmodel");
-//const BusinessHour = CM.BusinessHour;
-
 /* eslint-disable complexity, max-statements */
 
 export const beforeSave = function(request, response) {

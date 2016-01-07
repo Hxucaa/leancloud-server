@@ -7,8 +7,9 @@
 //import _ from "lodash";
 //import Validator from "validator";
 import AV from "leanengine";
+import { model } from "leancloud-utility";
 
-import { Business } from "cloudmodel";
+const { Business } = model();
 
 export const beforeSave = function(request, response) {
   const participation = request.object;

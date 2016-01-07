@@ -1,6 +1,6 @@
 "use strict";
 
-describe("UserFunction", () => {
+describe("CloudFunction", () => {
 
   describe("checkUsernameAvailability", () => {
 
@@ -11,15 +11,17 @@ describe("UserFunction", () => {
       done();
     });
 
-    it("should return true", done => {
-      request
-      .post("/1.1/functions/checkUsernameAvailability")
-      .send({
-        username: userFixture.username
-      })
-      .expect(200, {
-        result: true
-      }, done);
+    context("given any data", () => {
+      it("should return true", done => {
+        request
+          .post("/1.1/functions/checkUsernameAvailability")
+          .send({
+            username: userFixture.username
+          })
+          .expect(200, {
+            result: true
+          }, done);
+      });
     });
   });
 });

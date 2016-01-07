@@ -1,8 +1,10 @@
+"use strict";
+
 //import _ from "lodash";
 import AV from "leanengine";
-import cloudModel from "cloudmodel";
+import { model } from "leancloud-utility";
 
-const { Business, Participation } = cloudModel(AV);
+const { Business, Participation } = model();
 
 const prioritizeUsers = function(userArray) {
   const hasPicArray = userArray.filter(user => {

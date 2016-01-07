@@ -3,9 +3,6 @@
 //import _ from "lodash";
 //import Validator from "validator";
 
-//const CM = require("cloudmodel");
-//const BusinessStatistics = CM.BusinessStatistics;
-
 
 export const beforeSave = function(request, response) {
 

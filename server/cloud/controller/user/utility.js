@@ -1,10 +1,8 @@
 
 /* eslint-disable complexity, max-statements */
 
-import AV from "leanengine";
-const CM = require("cloudmodel")(AV); // eslint-disable-line import/no-require
-const AgeGroup = CM.AgeGroup;
-const Horoscope = CM.Horoscope;
+import { model } from "leancloud-utility";
+const { AgeGroup, Horoscope } = model();
 
 /**
  * Convert birthday to horoscope.

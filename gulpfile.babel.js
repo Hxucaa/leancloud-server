@@ -62,6 +62,23 @@ gulp.task("test:int", () => {
     .on("error", gutil.log);
 });
 
+gulp.task("test:int:ci", () => {
+
+  process.env.NODE_ENV = "ci";
+
+  return gulp
+    .src(["test/integration/**/*.js"], { read: false })
+    .pipe(mocha({
+      compilers: "js:babel-core/register",
+      reporter: "dot",
+      timeout: 5000,
+      ignoreLeaks: false,
+      recursive: true,
+      harmony: true
+    }))
+    .on("error", gutil.log);
+});
+
 gulp.task("test:sys", () => {
 
   process.env.NODE_ENV = "test";
@@ -131,7 +148,7 @@ gulp.task("jsdoc:w", ["jsdoc"], () => {
   gulp.watch(serverSrc, ["jsdoc"]);
 });
 
-gulp.task("dist:compile:package", () => {
+gulp.task("build:package", () => {
   return gulp
     .src(["package.json"])
     .pipe(jeditor((json) => {
@@ -148,7 +165,7 @@ gulp.task("dist:compile:package", () => {
     .pipe(gulp.dest("dist"));
 });
 
-gulp.task("dist:compile:code", () => {
+gulp.task("build:code", () => {
   return gulp
     .src(serverSrc, { base: "./" })
     .pipe(babel({
@@ -157,17 +174,17 @@ gulp.task("dist:compile:code", () => {
     .pipe(gulp.dest("dist"));
 });
 
-gulp.task("dist:compile", callback => {
+gulp.task("build", callback => {
   runSequence(
     "clean:dist",
-    "dist:compile:code",
-    "dist:compile:package",
+    "build:code",
+    "build:package",
     callback
   );
 });
 
-gulp.task("dist:compile:w", ["dist:compile"], () => {
-  gulp.watch(serverSrc, ["dist:compile"]);
+gulp.task("build:w", ["build"], () => {
+  gulp.watch(serverSrc, ["build"]);
 });
 
 gulp.task("clean:dist", () => {

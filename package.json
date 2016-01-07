@@ -1,7 +1,7 @@
 {
   "name": "leancloud-server",
   "description": "Leancloud server code and cloud code.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "repository": {
     "type": "git",
     "url": "ssh://git@dev.lai.io:2345/diffusion/LCS/leancloud-server.git"
@@ -24,10 +24,11 @@
     "test:int": "node_modules/.bin/gulp test:int",
     "test:sys": "node_modules/.bin/gulp test:sys",
     "test": "npm run test:int",
+    "test:ci": "node_modules/.bin/gulp test:int:ci",
     "plato": "node_modules/.bin/plato -r -t \"Cloud Code\" -x .json -d report server/**/*.js test/**/*.js app.js cloud.js server.js",
     "lint": "node_modules/.bin/eslint . --fix",
     "jsdoc": "node_modules/.bin/gulp jsdoc",
-    "dist:compile": "node_modules/.bin/gulp dist:compile",
+    "build": "node_modules/.bin/gulp build",
     "deploy:avos": "npm run dist:compile && node_modules/.bin/avoscloud deploy -f dist",
     "publish:avos": "node_modules/.bin/avoscloud publish -f dist",
     "populate": "node --harmony populator/index.js populate"
@@ -35,14 +36,13 @@
   "dependencies": {
     "babel-polyfill": "^6.3.14",
     "body-parser": "^1.14.1",
-    "cloudmodel": "https://github.com/ZenChat/cloudmodel.git#prod",
     "cookie-parser": "^1.4.0",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
+    "leancloud-utility": "git+https://github.com/ZenChat/leancloud-utility.git#0.2.0",
     "leanengine": "^0.2.0",
     "leanengine-sniper": "^0.3.2",
     "lodash": "^3.10.1",
-    "validation-stack": "https://github.com/ZenChat/validation-stack.git#prod",
     "validator": "^4.3.0"
   },
   "devDependencies": {
