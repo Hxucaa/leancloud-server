@@ -25,10 +25,9 @@
       "type": "String",
       "v": 1
     },
-    "region": {
+    "regionCode": {
       "required": true,
-      "className": "L_Region",
-      "type": "Pointer",
+      "type": "String",
       "v": 1
     },
     "isActive": {
