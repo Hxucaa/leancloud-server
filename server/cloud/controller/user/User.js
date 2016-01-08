@@ -24,6 +24,7 @@ export const beforeSave = function(request, response) {
   const gender = user.get("gender");
   const birthday = user.get("birthday");
   const type = user.get("type");
+  const nickname = user.get("nickname");
 
   /**
    * Validation
@@ -34,7 +35,8 @@ export const beforeSave = function(request, response) {
     fieldRule(type, UserValidation.verifyType),
     fieldRule(status, UserValidation.verifyStatus),
     fieldRule(gender, UserValidation.verifyGender),
-    fieldRule(birthday, UserValidation.verifyBirthday)
+    fieldRule(birthday, UserValidation.verifyBirthday),
+    fieldRule(nickname, UserValidation.verifyNickname)
   );
 
   /**
@@ -127,6 +129,7 @@ export const beforeUpdate = function(request, response) {
   const status = user.get("status");
   const gender = user.get("gender");
   const birthday = user.get("birthday");
+  const nickname = user.get("nickname");
 
   /**
    * Validation
@@ -135,7 +138,8 @@ export const beforeUpdate = function(request, response) {
     fieldRule(type, UserValidation.verifyType),
     fieldRule(status, UserValidation.verifyStatus),
     fieldRule(gender, UserValidation.verifyGender),
-    fieldRule(birthday, UserValidation.verifyBirthday)
+    fieldRule(birthday, UserValidation.verifyBirthday),
+    fieldRule(nickname, UserValidation.verifyNickname)
   );
 
   /**

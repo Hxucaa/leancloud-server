@@ -42,25 +42,25 @@ Server code written for LeanCloud based on the so called cloud code 3.0.
 
 # Getting started
 
-- Install nvm and node.js version 0.12.7. The version node.js run on Leancloud is so far based on 0.12.x. Local development and testing environment should match the production environment. Enter `nvm use 0.12.7` in command line.
-- Install [^avoscloud-code-command]: [avoscloud-code-command](https://github.com/leancloud/avoscloud-code-command) command line tool
-- Clone the repo
-- Run `npm install` in command line.
+1. Mare sure your node environment is 0.12.7
+2. Make sure you wrap the App ID, App Key, Master Key, and the random string inside quotation markers ("")
+3. npm install -g  avoscloud-code
+4. Clone LeanCloud-server repo
+5. Run `npm install` in repo directory
 
 ## Setup schema, indexing, CLP (class level permission) and ACL (access control list)
 All database setting files are located in `populator/database_settings`.
 
-### Schema
+### Data and schema
 
-- Database schema has to be setup manually. The easiest way is to import the schema to the database via the web interface.
-- Go to the web interface of your database instance on LeanCloud. Under "存储", click on the gears icon on the right side of "数据". On the menu, click "数据导入". On the popup, under "导入 class" enter the name of the class and select the schema file. For example, to import the `_User` schema, enter `_User` as the class name and select the file at `populator/database_setings/_User/_User.schema.json`.
-- Import schemas for all classes found in `populator/database_settings`.
+1. Go to the web interface of your database instance on LeanCloud. Under "存储", click on the gears icon on the right side of "数据". On the menu, click "数据导入". On the popup, under "导入 class" enter the name of the class and select the schema/population file. Use first part of the file name as the class name. (e.g. Business, Adress, etc.)
+2. Import all data from population.json files in `populator/database_settings`.
+3. Import all schemas from schema.json files in `populator/database_settings`.
 
 ### Indexing
-
 - Once you've finished importing schema, go back to the same "存储" page.
 - Click on a class you just imported schema for. Then click on "其他 => 索引".
-- In the popup, setup the indexing exactly like the documentation for each class. You can find the documentation under `populator/database_settings` for each class. **Note** that some of the indexes are required and filled by LeanCloud. Just make sure your version looks exactly the same as the documentation.
+- In the popup, setup the indexing exactly like the documentation for each class. You can find the documentation under `populator/database_settings` for each class. **Note** that some of the indexes are required and pre-filled by LeanCloud. Just make sure your version looks exactly the same as the documentation.
 
 ### CLP
 
@@ -71,66 +71,53 @@ All database setting files are located in `populator/database_settings`.
 - TBD
 
 
-## Populate Database
-
-There are two ways to populate the database:
-1. Run the populator script using the following command:
-    `npm run populate -- -i <<APP_ID>> -k <<APP_KEY>> -m <<MASTER_KEY>>`
-2. Manually import population.
-Method 2 is the recommended way, as the population script can hit the database several thousand times. And if network is congested, some operation could be lost.
-
-- Go to the web interface of your database instance on LeanCloud. Under "存储", click on the gears icon on the right side of "数据". On the menu, click "数据导入". On the popup, under "导入 class" enter the name of the class and select the schema file. For example, to import the `L_Region` schema, enter `L_Region` as the class name and select the file at `populator/database_setings/L_Region/L_Region.population.json`.
-- Import population for all classes found in `populator/database_settings`, if applicable.
-
 ## Setup private config
 
-Go to `config/` directory.
-1. Create a file named `cookie.js`. The content of the file is as below:
+1. Run  `python scripts/generate_secret.py | pbcopy` at repo root
+2. Go to `config/` directory, and create a file named `cookie.js` with the following content.
 ``` lang=javascript
 module.exports = {
-  secret: <<your cookie secret>>
+  secret: "paste the random key string just generated"
 };
 ```
-In command enter `python scripts/generate_secret.py | pbcopy`. Make sure you have python installed. This script will generate a random cookie secret and copy it to your clipboard. Replace the placeholder in `cookie.js` with the generated secret by pasting.
-2. Create a file named `secret.js`. The content of the file is as below:
+
+3. Create another file named `secret.js` with the following content and fill in the id and keys from LeanCloud.
 ``` lang=javascript
 module.exports = {
   development: {
 
   },
   test: {
-    APP_ID: <<ID>>
-    APP_KEY: <<KEY>>,
-    MASTER_KEY: <<MASTER_KEY>>
+    APP_ID: "App ID",
+    APP_KEY: "App Key",
+    MASTER_KEY: "Master Key"
   },
   production: {
-    APP_ID: <<ID>>,
-    APP_KEY: <<KEY>>,
-    MASTER_KEY: <<MASTER_KEY>>
+    APP_ID: "App ID",
+    APP_KEY: "App Key",
+    MASTER_KEY: "Master Key"
   }
 };
 ```
-Replace the placeholders with the keys from LeanCloud. **Note** that `development`, `test`, and `production` each refers to a different environment. They can have different keys. Test code is configured to run against the test environment.
+**Note** that `development`, `test`, and `production` environments can have same or different keys.
 
 ## Deploy to your LeanCloud database instance for the first time
 
-Before you start this section, there's one thing you have to keep in mind. The server code is written in es6 and transpile via babel. The transpliation step is necessary because, as of now, LeanCloud still runs on v0.12.x of Node,js, which does not support most es6 features. Before the code can be deployed to LeanCloud, it has to be transpiled, locally, to es5. Although it is possible to use babel to transpile the code right as node server starts, this significantly increases the duration of deployment. This is due to the time it takes to download babel and transpile the code. Consequently the server code is transpiled to `dist` directly. From there the code is deployed to a LeanCloud instance. It takes about one minute to deploy.
+The server code is written in es6 and transpiled locally via babel (hence the dist folder later) to support es6 features.
 
-- Go to LeanCloud and log in. Create a new instance of database. Note down the name. Go to the setting page of that database and look for `appID` and `masterKey`. You will need both of these.
-- At root directory of the repo, enter `avoscloud add <name of database instance> <appID> -f dist` using the information acquired. This is going to create and save info in `dist/.avoscloud` directory. If you entered info wrong, manually delete the folder.
-- Once you are ready to push the code to the database instance, enter `npm run deploy:avos` in short in command line. **Note** that the command line tool will ask you for `masterKey` the first time its run. For more info on how the command line works, refer to [^avoscloud-code-command]: [avoscloud-code-command](https://github.com/leancloud/avoscloud-code-command).
-- The command-line tool will compress the project and upload it to the instance you have specified on LeanCloud. The tool will print out a series of log in the command-line.
-- `npm run deploy:avos` will deploy the code to test environment. You can target the test environment specifically when initializing the client. However, to deploy to production environment, you have to run `npm run publish:avos` in command-line. **Note** that you cannot directly push local code to production. It has to go through test environment first. That being said, production environment deployment takes significantly less time to complete.
+1. At repo root directory, run `avoscloud add <name of database instance> "App ID" -f dist`. This creates and saves info in `dist/.avoscloud` directory. If you entered info wrong, manually delete the folder and mkdir again.
+2. Run `npm run deploy:avos` to deploy to test environment. **Note** that the command line tool will ask you for `masterKey` the first time its run. For more info on how the command line works, refer to [^avoscloud-code-command]: [avoscloud-code-command](https://github.com/leancloud/avoscloud-code-command).
+3.Run `npm run publish:avos` to deploy to production environment, . **Note** that you cannot directly push local code to production. It has to go through test environment first.
 
 
 # Debug and testing
-Due to restrictions inherent to BaaS platform, debugging cloud code is not as straightforward as that for custom server stack. Specifically, you do not have complete control of the environment. Some compromises have to be made during testing. That being said there are definitely tools to go around the problems.
+Due to general restrictions of BaaS platform, debugging is not as straightforward because you don't have complete control of the environment. Some compromises have to be made during testing but there are tools to go around the problems, feel free to explore and break things.
 
 ## Individually debug and test cloud hooks and cloud functions
 
-Cloud code 3.0 allows developers to, partially, test server code on local machine. Check whether the command-line tool, [avoscloud-code-command](https://github.com/leancloud/avoscloud-code-command), is installed before proceeding.
+Cloud code 3.0 allows developers to test server code on local machine to certain extend. Before proceeding, make sure [avoscloud-code-command](https://github.com/leancloud/avoscloud-code-command) is installed before proceeding.
 
-To launched the server locally, at command line enter `avoscloud`. If it asks for `app ID` and `master key`, find out on leancloud's website. A local debug web page can be reached at [debug page](http://localhost:3001). On that page, you can individually select cloud hooks and cloud functions, and manually enter JSON data to debug. For example, to test a cloud function, you'd select the function from the dropdown menu, then enter data in JSON format in the textbox. Run the command and the webpage will return result. This also works for cloud hooks.
+To launched the server locally, run `avoscloud`. Enter `app ID` and `master key` if prompted. A local debug web page can be reached at http://localhost:3001. On that page, you can individually select cloud hooks and cloud functions, and manually enter JSON data to debug. For example, to test a cloud function, you'd select the function from the dropdown menu, then enter data in JSON format in the text box. Run the command and the webpage will return result. This also works for cloud hooks.
 
 **PROS:**
 
@@ -140,39 +127,37 @@ To launched the server locally, at command line enter `avoscloud`. If it asks fo
 **CONS:**
 
 - Manually craft JSON data can be tedious very soon.
-- The local server is a mock server. Hence there's no guaruntee it functions exactly the same as production environment.
+- The local server is a mock server. Hence there's no guarantee it functions exactly the same as production environment.
 
-Tests can be written against cloud hooks and functions individually on the local moc server. Conceptually the tests behave similarly to the [debug page](http://localhost:3001). You'd craft JSON request in code and send it to local mock server. Take a look at the code in `test/ingegration`. [superagent](https://github.com/visionmedia/superagent) is used to handle raw JSON network request.
-
-**NOTE:** Make sure you enter `nvm use` to switch to the correct Node.js version.
+Tests can be written against cloud hooks and functions individually on the local mock server. Conceptually the tests behave similarly to the http://localhost:3001. You'd craft JSON request in code and send it to local mock server. Take a look at the code in `test/ingegration`. [superagent](https://github.com/visionmedia/superagent) is used to handle raw JSON network request.
 
 - To run integration test: `gulp test:int`.
 - To run integration test on file change: `gulp test:w`.
 
 ## System level debug and test
 
-Now the above method is only good for testing hooks and functions in isolation. However, it does not guaruntee that they'd work correctly together in production. For example, a request coming in to update a User record will always trigger `beforeUpdate` and `afterUpdate`. And if code in `beforeUpdate` also saves data in another table, it will trigger another set of hooks. In addition, the table schema also comes into effect.
+Now the above method is only good for testing hooks and functions in isolation. However, it does not guarantee that they'd work correctly together in production. For example, a request to update a User record will always trigger `beforeUpdate` and `afterUpdate`, and if code in `beforeUpdate` also saves data in another table, it will trigger another set of hooks. In addition, the table schema also comes into effect.
 
-There's a similar, above mentioned, debug page for system level debug. Click on "帮助" on the top menu bar. In the dropdown menu click on "在线API测试工具". This is very similar to the local debug page. **NOTE** you have publish server code to production environment in order to use this tool. To do that first deploy to test environment , `npm run deploy:avos`, then publish to production, `npm run publish:avos`.
+There's a similar, above mentioned, debug page for system level debug. Click on "帮助" on the top menu bar. In the dropdown menu click on "在线API测试工具". This is very similar to the local debug page. **NOTE** you have publish server code to production environment in order to use this tool - `npm run deploy:avos`, then publish to production, `npm run publish:avos`.
 
-In system tests we utilize `avoscloud-sdk` to test againt the entire system. In essence we are basically simulating how clients would interact with server. Take a look at the code in `test/system` for examples.
+In system tests we utilize `avoscloud-sdk` to test against the entire system. In essence we are basically simulating how clients would interact with the server. Take a look at the code in `test/system` for examples.
 
 **PROS:**
 
-- High level of confidence in correctness. Basically running tests against production environment.
+- High level of confidence in correctness - basically running tests against production environment.
 
 **CONS:**
 
-- Have to deploy before running tests. Have to do it every time there's changes in server code.
+- Have to deploy before running tests and do it every time there's changes in server code.
 - Takes about 1 minute to deploy.
 - To use the online debug page, have to publish code.
-- Tests take longer to run due to network travel time.
-- Harder to write tests as a lot of factors, such as database schema, ACL, CLP, etc, come into play.
+- Tests might take longer to run depending on network conditions.
+- Harder to write tests as a lot of factors, such as database schema, ACL, CLP, etc.
 
-Of course you have to deploy the server code to LeanCloud before running system test. The system tests environment has been configured to hit test environment only, so you don't have to publish to production environment each time.
+The system tests environment has been configured to hit test environment only, so you don't have to publish to production environment each time.
 
 - To deploy: `npm run deploy:avos`.
 - To run system test: `gulp test:sys`.
 - To run system test on file change: `gulp test:w`.
 
-The above two methods compliment each other. Debug and testing cloud hooks and function individually allows developers to iterate faster, and it ensures correctness on a unit level. However, individually working components do not guarantee that they work correctly together. That is why a system level test is also important. The downside however is that system test is usually slow to run.
+The above two methods compliment each other. Debugging and testing cloud hooks and functions individually allows developers to iterate faster, and it ensures correctness on a unit level. However, individually working components do not guarantee that they work correctly together. That is why a system level test is also important. The downside however is that system test is usually slow to run.
