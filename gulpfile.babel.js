@@ -229,7 +229,8 @@ gulp.task("build:w", ["build"], () => {
 gulp.task("clean:dist", () => {
   return del([
     "dist/**/*",
-    "!dist/.avoscloud"
+    "!dist/.avoscloud",
+    "!dist/.gitkeep"
   ]);
 });
 
