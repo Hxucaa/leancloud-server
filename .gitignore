@@ -22,6 +22,7 @@ Thumbs.db
 
 config/secret.js
 config/cookie.js
-dist/!README.md
+dist/*
+!dist/.gitkeep
 .avoscloud/
 jsdoc/
