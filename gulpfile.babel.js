@@ -45,9 +45,11 @@ gulp.task("default", () => {
 
 });
 
-gulp.task("test:int", () => {
+function suppressError() {
+  this.emit("end"); // eslint-disable-line no-invalid-this
+}
 
-  process.env.NODE_ENV = "test";
+const integrationTest = () => {
 
   return gulp
     .src(["test/integration/**/*.js"], { read: false })
@@ -58,8 +60,23 @@ gulp.task("test:int", () => {
       ignoreLeaks: false,
       recursive: true,
       harmony: true
-    }))
+    }));
+};
+
+gulp.task("test:int", () => {
+
+  process.env.NODE_ENV = "test";
+
+  return integrationTest()
     .on("error", gutil.log);
+});
+
+gulp.task("test:int:w", () => {
+
+  process.env.NODE_ENV = "test";
+
+  return integrationTest()
+    .on("error", suppressError);
 });
 
 gulp.task("test:int:ci", () => {
@@ -79,9 +96,7 @@ gulp.task("test:int:ci", () => {
     .on("error", gutil.log);
 });
 
-gulp.task("test:sys", () => {
-
-  process.env.NODE_ENV = "test";
+const systemTest = () => {
 
   return gulp
     .src(["test/system/**/*.js"], { read: false })
@@ -92,8 +107,23 @@ gulp.task("test:sys", () => {
       ignoreLeaks: false,
       recursive: true,
       harmony: true
-    }))
+    }));
+};
+
+gulp.task("test:sys", () => {
+
+  process.env.NODE_ENV = "test";
+
+  return systemTest()
     .on("error", gutil.log);
+});
+
+gulp.task("test:sys:w", () => {
+
+  process.env.NODE_ENV = "test";
+
+  return systemTest()
+    .on("error", suppressError);
 });
 
 gulp.task("test", callback => {
@@ -105,10 +135,19 @@ gulp.task("test", callback => {
   );
 });
 
-gulp.task("test:w", ["test:int", "test:sys"], () => {
+gulp.task("test:watch", callback => {
+  runSequence(
+    "lint",
+    "test:int:w",
+    "test:sys:w",
+    callback
+  );
+});
+
+gulp.task("test:w", ["test:int:w", "test:sys:w"], () => {
   gulp.watch(
     serverSrc.concat(testSrc),
-    ["test:int", "test:sys"]
+    ["test:int:w", "test:sys:w"]
   );
 });
 
