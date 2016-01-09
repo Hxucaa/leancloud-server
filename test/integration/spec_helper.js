@@ -28,7 +28,7 @@ if (process.env.NODE_ENV === "test") {
   AV.setProduction(false);
 }
 // 如果不希望使用 masterKey 权限，可以将下面一行删除
-//AV.Cloud.useMasterKey();
+AV.Cloud.useMasterKey();
 
 
 // 端口一定要从环境变量 `LC_APP_PORT` 中获取。
@@ -44,6 +44,7 @@ const request = defaults(supertest(app));
 request
   .set("X-AVOSCloud-Application-Id", secret.test.APP_ID)
   .set("X-AVOSCloud-Application-Key", secret.test.APP_KEY)
+  // .set("X-AVOSCloud-Master-Key", secret.test.MASTER_KEY)
   .set("Content-Type", "application/json");
 
 global.request = request;

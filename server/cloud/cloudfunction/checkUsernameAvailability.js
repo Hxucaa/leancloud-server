@@ -6,7 +6,7 @@ import { model } from "leancloud-utility";
 
 const { User } = model;
 
-export default async function checkUsernameAvailability(request, response) {
+export default function checkUsernameAvailability(request, response) {
   const username = request.params.username;
 
   if (!username) {
@@ -16,12 +16,10 @@ export default async function checkUsernameAvailability(request, response) {
   const uQuery = new AV.Query(User);
 
   uQuery.equalTo("username", username);
-  try {
-    const result = await uQuery.first();
-
-    response.success(!Boolean(result));
-  }
-  catch (err) {
-    response.error(err);
-  }
-};
+  uQuery.first()
+    .then(res => {
+      response.success(!Boolean(res));
+    }, err => {
+      response.error(err);
+    });
+}
