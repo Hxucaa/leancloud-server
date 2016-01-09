@@ -20,8 +20,12 @@ global.expect = chai.expect;
 global.assert = chai.assert;
 global.Fixture = Fixture;
 
+const APP_ID = process.env.APP_ID ? process.env.APP_ID : secret.test.APP_ID;
+const APP_KEY = process.env.APP_KEY ? process.env.APP_KEY : secret.test.APP_KEY;
+const MASTER_KEY = process.env.MASTER_KEY ? process.env.MASTER_KEY : secret.test.MASTER_KEY;
+
 // Initialize Leancloud SDK
-AV.initialize(secret.test.APP_ID, secret.test.APP_KEY, secret.test.MASTER_KEY);
+AV.initialize(APP_ID, APP_KEY, MASTER_KEY);
 
 if (process.env.NODE_ENV === "test") {
   // 在测试环境
@@ -42,9 +46,9 @@ app.listen(PORT, () => console.log("Node test app is running at port: ", PORT));
 const request = defaults(supertest(app));
 
 request
-  .set("X-AVOSCloud-Application-Id", secret.test.APP_ID)
-  .set("X-AVOSCloud-Application-Key", secret.test.APP_KEY)
-  // .set("X-AVOSCloud-Master-Key", secret.test.MASTER_KEY)
+  .set("X-AVOSCloud-Application-Id", APP_ID)
+  .set("X-AVOSCloud-Application-Key", APP_KEY)
+  // .set("X-AVOSCloud-Master-Key", MASTER_KEY)
   .set("Content-Type", "application/json");
 
 global.request = request;
