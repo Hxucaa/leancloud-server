@@ -7,11 +7,12 @@
 import chai from "chai";
 import chaiAsPromised from "chai-as-promised";
 import AV from "leanengine";
-import secret from "~/config/secret";
 import supertest from "supertest";
 import defaults from "superagent-defaults";
 import app from "~/app";
 import * as Fixture from "./fixture/index";
+
+
 
 chai.should();
 chai.use(chaiAsPromised);
@@ -20,9 +21,9 @@ global.expect = chai.expect;
 global.assert = chai.assert;
 global.Fixture = Fixture;
 
-const APP_ID = process.env.APP_ID ? process.env.APP_ID : secret.test.APP_ID;
-const APP_KEY = process.env.APP_KEY ? process.env.APP_KEY : secret.test.APP_KEY;
-const MASTER_KEY = process.env.MASTER_KEY ? process.env.MASTER_KEY : secret.test.MASTER_KEY;
+const APP_ID = process.env.APP_ID ? process.env.APP_ID : require("../../config/secret").test.APP_ID;
+const APP_KEY = process.env.APP_KEY ? process.env.APP_KEY : require("../../config/secret").test.APP_KEY;
+const MASTER_KEY = process.env.MASTER_KEY ? process.env.MASTER_KEY : require("../../config/secret").test.MASTER_KEY;
 
 // Initialize Leancloud SDK
 AV.initialize(APP_ID, APP_KEY, MASTER_KEY);
