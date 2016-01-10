@@ -38,7 +38,7 @@
     "cookie-parser": "^1.4.0",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
-    "leancloud-utility": "^0.2.2",
+    "leancloud-utility": ">=0.2.11",
     "leanengine": "^0.2.0",
     "leanengine-sniper": "^0.3.2",
     "lodash": "^3.10.1",
