@@ -16,10 +16,17 @@ AV.Cloud.beforeUpdate("_User", Controller.User.beforeUpdate);
 // Business Operations
 ////////////////////////////////
 
-//AV.Cloud.beforeSave("Business", Controller.Business.beforeSave);
-//AV.Cloud.afterSave("Business", Controller.Business.afterSave)
+AV.Cloud.beforeSave("Business", Controller.Business.beforeSave);
+AV.Cloud.beforeUpdate("Business", Controller.Business.beforeUpdate);
 //AV.Cloud.beforeDelete("Business", Controller.Business.beforeDelete)
 //AV.Cloud.afterDelete("Business", Controller.User.afterDelete)
+
+////////////////////////////////
+// Address Operations
+////////////////////////////////
+
+AV.Cloud.beforeSave("Address", Controller.Address.beforeSave);
+AV.Cloud.beforeUpdate("Address", Controller.Address.beforeUpdate);
 
 ////////////////////////////////
 // Participation Operations
