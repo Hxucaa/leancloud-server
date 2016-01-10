@@ -56,7 +56,7 @@ const integrationTest = () => {
     .pipe(mocha({
       compilers: "js:babel-core/register",
       reporter: "nyan",
-      timeout: 5000,
+      timeout: 15000,
       ignoreLeaks: false,
       recursive: true,
       harmony: true
@@ -77,23 +77,6 @@ gulp.task("test:int:w", () => {
 
   return integrationTest()
     .on("error", suppressError);
-});
-
-gulp.task("test:int:ci", () => {
-
-  process.env.NODE_ENV = "ci";
-
-  return gulp
-    .src(["test/integration/**/*.js"], { read: false })
-    .pipe(mocha({
-      compilers: "js:babel-core/register",
-      reporter: "dot",
-      timeout: 5000,
-      ignoreLeaks: false,
-      recursive: true,
-      harmony: true
-    }))
-    .on("error", gutil.log);
 });
 
 const systemTest = () => {

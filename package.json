@@ -24,7 +24,6 @@
     "test:int": "node_modules/.bin/gulp test:int",
     "test:sys": "node_modules/.bin/gulp test:sys",
     "test": "npm run test:int",
-    "test:ci": "node_modules/.bin/gulp test:int:ci",
     "lint": "node_modules/.bin/eslint . --fix",
     "jsdoc": "node_modules/.bin/gulp jsdoc",
     "build": "node_modules/.bin/gulp build",
