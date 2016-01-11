@@ -3,7 +3,8 @@
     "ESLint": {
       "type": "eslint",
       "include": "(\\.js$)",
-      "exclude": "((^dist/)|(^jsdoc/)|(^coverage/))"
+      "exclude": "((^dist/)|(^jsdoc/)|(^coverage/))",
+      "exclude": "((^populator_test_env/)|(^jsdoc/)|(^coverage/))"
     }
   }
 }

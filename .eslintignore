@@ -3,3 +3,4 @@ coverage/**
 config/secret.js
 config/cookie.js
 dist/**
+populator_test_env/**

@@ -9,10 +9,10 @@ import faker from "faker";
 
 export default class UserFixture {
   constructor() {
-    this.username = `${faker.name.firstName()}${faker.name.lastName()}`;
+    this.username = (faker.name.firstName() + faker.name.lastName()).substring(0, 28);
     this.password = faker.internet.password();
     this.type = 1;
-    this.nickname = faker.name.findName();
+    this.nickname = (faker.name.findName()).substring(0, 18);
     this.gender = 1;
     this.birthday = faker.date.between(new Date(1960, 1, 1), new Date(1994, 1, 1));
     this.coverPhoto = {

@@ -12,6 +12,10 @@
     "Cloud Code"
   ],
   "author": "Lance Zhu <lzhu@lai.io>",
+  "contributors": [
+    {"name": "William Qi <wqi@lai.io>"},
+    {"name": "James Liu <jliu@lai.io>"}
+  ],
   "babel": {
     "presets": [
       "es2015",
@@ -29,7 +33,8 @@
     "build": "node_modules/.bin/gulp build",
     "deploy:avos": "npm run build && node_modules/.bin/avoscloud deploy -f dist",
     "publish:avos": "node_modules/.bin/avoscloud publish -f dist",
-    "populate": "node --harmony populator/index.js populate"
+    "populate": "node --harmony populator/index.js populate",
+    "populate:test": "cd populator_test_env/ && node populateuser.js && node populatebusiness.js && cd .."
   },
   "dependencies": {
     "babel-polyfill": "^6.3.14",
@@ -44,6 +49,7 @@
     "validator": "^4.3.0"
   },
   "devDependencies": {
+    "async": "^1.4.2",
     "avoscloud-code": "^0.9.1",
     "avoscloud-sdk": "1.0.0-rc5",
     "babel-core": "^6.3.2",

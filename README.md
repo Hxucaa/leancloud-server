@@ -9,6 +9,7 @@ Server code written for LeanCloud based on the so called cloud code 3.0.
 |   dist    <<Transpiled server code that is going to be deployed>>
 |   jsdoc   <<Documentation>>
 |   node_modules
+|   populator_test_env <<Populate database with testing data>>
 |   populator   <<Populate database with production data>>
 |   scripts <<Scripts for the project>>
 |   server
@@ -107,7 +108,10 @@ The server code is written in es6 and transpiled locally via babel (hence the di
 
 1. At repo root directory, run `avoscloud add <name of database instance> "App ID" -f dist`. This creates and saves info in `dist/.avoscloud` directory. If you entered info wrong, manually delete the folder and mkdir again.
 2. Run `npm run deploy:avos` to deploy to test environment. **Note** that the command line tool will ask you for `masterKey` the first time its run. For more info on how the command line works, refer to [^avoscloud-code-command]: [avoscloud-code-command](https://github.com/leancloud/avoscloud-code-command).
-3.Run `npm run publish:avos` to deploy to production environment, . **Note** that you cannot directly push local code to production. It has to go through test environment first.
+3. Run `npm run populate:test` to populate test environment database
+4. Run `npm run publish:avos` to deploy to production environment. **Note** that you cannot directly push local code to production. It has to go through test environment first.
+5. Run `npm run populate` to populate production environment database
+
 
 
 # Debug and testing
