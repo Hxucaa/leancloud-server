@@ -13,8 +13,12 @@
   ],
   "author": "Lance Zhu <lzhu@lai.io>",
   "contributors": [
-    {"name": "William Qi <wqi@lai.io>"},
-    {"name": "James Liu <jliu@lai.io>"}
+    {
+      "name": "William Qi <wqi@lai.io>"
+    },
+    {
+      "name": "James Liu <jliu@lai.io>"
+    }
   ],
   "babel": {
     "presets": [
@@ -28,13 +32,14 @@
     "test:int": "node_modules/.bin/gulp test:int",
     "test:sys": "node_modules/.bin/gulp test:sys",
     "test": "npm run test:int",
-    "lint": "node_modules/.bin/eslint . --fix",
+    "lint": "node_modules/.bin/gulp lint",
     "jsdoc": "node_modules/.bin/gulp jsdoc",
     "build": "node_modules/.bin/gulp build",
     "deploy:avos": "npm run build && node_modules/.bin/avoscloud deploy -f dist",
     "publish:avos": "node_modules/.bin/avoscloud publish -f dist",
     "populate": "node --harmony populator/index.js populate",
-    "populate:test": "cd populator_test_env/ && node populateuser.js && node populatebusiness.js && cd .."
+    "populate:test": "cd populator_test_env/ && node populateuser.js && node populatebusiness.js && cd ..",
+    "ci": "npm run lint && npm run test:int"
   },
   "dependencies": {
     "babel-polyfill": "^6.3.14",

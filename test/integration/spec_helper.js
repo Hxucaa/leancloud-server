@@ -21,9 +21,9 @@ global.expect = chai.expect;
 global.assert = chai.assert;
 global.Fixture = Fixture;
 
-const APP_ID = process.env.APP_ID ? process.env.APP_ID : require("../../config/secret").test.APP_ID;
-const APP_KEY = process.env.APP_KEY ? process.env.APP_KEY : require("../../config/secret").test.APP_KEY;
-const MASTER_KEY = process.env.MASTER_KEY ? process.env.MASTER_KEY : require("../../config/secret").test.MASTER_KEY;
+const APP_ID = process.env.APP_ID ? process.env.APP_ID : require("../../config/secret").test.APP_ID;  // eslint-disable-line
+const APP_KEY = process.env.APP_KEY ? process.env.APP_KEY : require("../../config/secret").test.APP_KEY;  // eslint-disable-line
+const MASTER_KEY = process.env.MASTER_KEY ? process.env.MASTER_KEY : require("../../config/secret").test.MASTER_KEY;  // eslint-disable-line
 
 // Initialize Leancloud SDK
 AV.initialize(APP_ID, APP_KEY, MASTER_KEY);

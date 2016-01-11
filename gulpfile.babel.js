@@ -144,7 +144,7 @@ gulp.task("lint", () => {
     // of the file object so it can be used by other modules.
     .pipe(eslint({
       warnFileIgnored: true,
-      fix: true,
+      fix: false,
       useEslintrc: true
     }))
     // eslint.format() outputs the lint results to the console.
