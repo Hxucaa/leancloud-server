@@ -143,7 +143,6 @@
       "v": 1
     },
     "coverPhoto": {
-      "required": true,
       "type": "File",
       "v": 1
     },
