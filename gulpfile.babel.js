@@ -56,7 +56,7 @@ const integrationTest = () => {
     .pipe(mocha({
       compilers: "js:babel-core/register",
       reporter: "nyan",
-      timeout: 15000,
+      timeout: 25000,
       ignoreLeaks: false,
       recursive: true,
       harmony: true
@@ -86,7 +86,7 @@ const systemTest = () => {
     .pipe(mocha({
       compilers: "js:babel-core/register",
       reporter: "nyan",
-      timeout: 15000,
+      timeout: 25000,
       ignoreLeaks: false,
       recursive: true,
       harmony: true
