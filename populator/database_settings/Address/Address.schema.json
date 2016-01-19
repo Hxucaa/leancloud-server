@@ -30,6 +30,23 @@
       "type": "String",
       "v": 1
     },
+    "province": {
+      "required": true,
+      "read_only": true,
+      "type": "String",
+      "v": 1
+    },
+    "city": {
+      "required": true,
+      "read_only": true,
+      "type": "String",
+      "v": 1
+    },
+    "district": {
+      "read_only": true,
+      "type": "String",
+      "v": 1
+    },
     "isActive": {
       "hidden": true,
       "read_only": true,
