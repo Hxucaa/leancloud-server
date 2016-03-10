@@ -1,0 +1,471 @@
+<html><head><title>Table</title><meta charset="UTF-8"><link href="http://fonts.googleapis.com/css?family=Crimson+Text:400,400italic,700,700italic|Roboto:400,700,700italic,400italic" rel="stylesheet" type="text/css"><style>/*
+ * Copyright 2014 Quip
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License. You may obtain
+ * a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ */
+
+body {
+    font-size: 15px;
+    color: #333;
+    background: #fff;
+    padding: 60px 95px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern";
+    font-kerning: normal;
+    -moz-font-feature-settings: "kern";
+    -webkit-font-feature-settings: "kern";
+}
+
+/* Headings */
+h1, h2, h3, th {
+    font-family: Roboto, sans-serif;
+    font-weight: 700;
+    margin: 0;
+    margin-top: 1.25em;
+    margin-bottom: 0.75em;
+}
+
+h1 {
+    font-size: 35px;
+    line-height: 42px;
+}
+
+h1:first-child {
+    margin-top: 0;
+}
+
+h2 {
+    font-size: 18px;
+    line-height: 22px;
+}
+
+h3 {
+    text-transform: uppercase;
+    font-size: 13px;
+    line-height: 16px;
+}
+
+/* Body text */
+body, p, ul, ol, td {
+    font-family: 'Crimson Text', serif;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+blockquote, q {
+    display: block;
+    margin: 1em 0;
+    font-style: italic;
+}
+
+blockquote a, q a {
+    text-decoration: underline;
+}
+
+blockquote {
+    padding-left: 10px;
+    border-left: 4px solid #a6a6a6;
+}
+
+q {
+    color: #a6a6a6;
+    line-height: 40px;
+    font-size: 24px;
+    text-align: center;
+    quotes: none;
+}
+
+q a {
+    color: #a6a6a6;
+}
+
+code, pre {
+    font-family: Consolas, "Liberation Mono", Menlo, "Courier Prime Web", Courier, monospace;
+    background: #f3f3f3;
+}
+
+code {
+    padding: 1px;
+    margin: 0 -1px;
+    border-radius: 3px;
+}
+
+pre {
+    display: block;
+    line-height: 20px;
+    text-shadow: 0 1px white;
+    padding: 5px 5px 5px 30px;
+    white-space: nowrap;
+    position: relative;
+    margin: 1em 0;
+}
+
+pre:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 15px;
+    border-left: solid 1px #dadada;
+}
+
+/* Lists */
+div[data-section-style="5"],
+div[data-section-style="6"],
+div[data-section-style="7"] {
+    margin: 12px 0;
+}
+
+ul {
+    padding: 0 0 0 40px;
+}
+
+ul li {
+    margin-bottom: 0.4em;
+}
+
+/* Bulleted list */
+div[data-section-style="5"] ul {
+    list-style-type: disc;
+}
+div[data-section-style="5"] ul ul {
+    list-style-type: circle;
+}
+div[data-section-style="5"] ul ul ul {
+    list-style-type: square;
+}
+div[data-section-style="5"] ul ul ul ul {
+    list-style-type: disc;
+}
+div[data-section-style="5"] ul ul ul ul ul {
+    list-style-type: circle;
+}
+div[data-section-style="5"] ul ul ul ul ul ul {
+    list-style-type: square;
+}
+
+/* Numbered list */
+div[data-section-style="6"] ul {
+    list-style-type: decimal;
+}
+div[data-section-style="6"] ul ul {
+    list-style-type: lower-alpha;
+}
+div[data-section-style="6"] ul ul ul {
+    list-style-type: lower-roman;
+}
+div[data-section-style="6"] ul ul ul ul {
+    list-style-type: decimal;
+}
+div[data-section-style="6"] ul ul ul ul ul {
+    list-style-type: lower-alpha;
+}
+div[data-section-style="6"] ul ul ul ul ul ul {
+    list-style-type: lower-roman;
+}
+
+/* Checklist */
+div[data-section-style="7"] ul {
+    list-style-type: none;
+}
+
+div[data-section-style="7"] ul li:before {
+    content: "\2610";
+    position: absolute;
+    display: inline;
+    margin-right: 1.2em;
+    margin-left: -1.2em;
+}
+
+div[data-section-style="7"] ul li.parent:before {
+    content: "";
+}
+
+div[data-section-style="7"] ul li.parent {
+    font-weight: bold;
+}
+
+div[data-section-style="7"] ul li.checked {
+    text-decoration: line-through;
+}
+
+div[data-section-style="7"] ul li.checked:before {
+    content: "\2611";
+    text-decoration: none;
+}
+
+/* Tables */
+div[data-section-style="8"] {
+    margin: 12px 0;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: separate;
+    border: solid 1px #7c7c7c;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .25);
+    table-layout: fixed;
+    position: relative;
+}
+
+table th, table td {
+    padding: 2px 2px 0;
+    min-width: 1.5em;
+    word-wrap: break-word;
+}
+
+table th {
+    border-bottom: 1px solid #ccc;
+    background: #f0f0f0;
+    font-weight: bold;
+    vertical-align: bottom;
+    color: #3a4449;
+    text-align: center;
+}
+
+table td {
+    padding-top: 0;
+    border-left: 1px solid #e1e1e1;
+    border-top: 1px solid #e1e1e1;
+    vertical-align: top;
+}
+
+table td:first-child {
+    border-left: hidden;
+}
+
+table tr:first-child td {
+    border-top: hidden;
+}
+
+/* Images */
+div[data-section-style="11"] {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div[data-section-style="11"][data-section-float="0"] {
+    clear: both;
+    text-align: center;
+}
+
+div[data-section-style="11"][data-section-float="1"] {
+    float: left;
+    clear: left;
+    margin-right: 20px;
+}
+
+div[data-section-style="11"][data-section-float="2"] {
+    float: right;
+    clear: right;
+    margin-left: 20px;
+}
+
+div[data-section-style="11"] img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+}
+
+hr {
+    width: 70px;
+    margin: 20px auto;
+}
+</style></head><body><h1 id='WDAACANrEdB'>Table</h1>
+
+<div data-section-style='13'><table id='WDAACAmS80m' title='Table1' style='width: 87.8667em;'><thead><tr><th id='WDAACAt20u3'  style='width: 9.2em'>Column Name
+
+<br/></th><th id='WDAACADLVOz'  style='width: 6em'>Data Type
+
+<br/></th><th id='WDAACANweH1'  style='width: 8.13333em'>Format
+
+<br/></th><th id='WDAACAwW3cs'  style='width: 8.46667em'>Default 默认值
+
+<br/></th><th id='WDAACA5CPkh'  style='width: 6em'>Column Notes 列注释
+
+<br/></th><th id='WDAACAs2vyW'  style='width: 8em'>Readonly 只读 (Yes or No)
+
+<br/></th><th id='WDAACAqo1y2'  style='width: 8em'>Required 必填项 (Yes or No)
+
+<br/></th><th id='WDAACA1qta8'  style='width: 6em'>Hidden from client 客户端不可见 (Yes or No)
+
+<br/></th><th id='WDAACAIuR2I'  style='width: 28.0667em'>Notes
+
+<br/></th></tr></thead><tbody><tr id='WDAACAMZVEd'><td id='WDAACA17hba' style=''>objectId
+
+<br/></td><td id='WDAACA6k7zE' style=''>String
+
+<br/></td><td id='WDAACAWoC4H' style=''>
+
+<br/></td><td id='WDAACAanROs' style=''>
+
+<br/></td><td id='WDAACAF3U7M' style=''>
+
+<br/></td><td id='WDAACAK5Chx' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='WDAACA4vUa6' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='WDAACAa1cbm' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='WDAACAK1U3b' style=''>
+
+<br/></td></tr><tr id='WDAACAjlgEa'><td id='WDAACAVMCY8' style=''>ACL
+
+<br/></td><td id='WDAACAvbVvp' style=''>ACL
+
+<br/></td><td id='WDAACA9RoNu' style=''>
+
+<br/></td><td id='WDAACA4aXI7' style=''>
+
+<br/></td><td id='WDAACA8LLc9' style=''>
+
+<br/></td><td id='WDAACAIQmUg' style='background-color:#4dd0e1;'>TBD
+
+<br/></td><td id='WDAACALdKCz' style='background-color:#4dd0e1;'>TBD
+
+<br/></td><td id='WDAACA8iSrr' style='background-color:#4dd0e1;'>TBD
+
+<br/></td><td id='WDAACA4WAVe' style=''>
+
+<br/></td></tr><tr id='WDAACAos4L2'><td id='WDAACAT3tWi' style=''>initiator
+
+<br/></td><td id='WDAACA0vo6A' style=''>Pointer
+
+<br/></td><td id='WDAACArrsiZ' style=''>_User
+
+<br/></td><td id='WDAACA3X34d' style=''>
+
+<br/></td><td id='WDAACAleLIL' style=''>
+
+<br/></td><td id='WDAACAGijeV' style='background-color:#f06292;'>N
+
+<br/></td><td id='WDAACASGB0X' style='background-color:#81c784;'>Y
+
+<br/></td><td id='WDAACAhqOj3' style='background-color:#f06292;'>N
+
+<br/></td><td id='WDAACAne2kX' style=''>- this is objectId from User table and Type of user must be 1 = User, and this user is active
+
+<br/></td></tr><tr id='WDAACA4Sxit'><td id='WDAACAEkNws' style=''>business
+
+<br/></td><td id='WDAACAkVuSe' style=''>Pointer
+
+<br/></td><td id='WDAACA3NAf7' style=''>Business
+
+<br/></td><td id='WDAACA8Iq1N' style=''>
+
+<br/></td><td id='WDAACAoaI5z' style=''>
+
+<br/></td><td id='WDAACAjW01H' style='background-color:#f06292;'>N
+
+<br/></td><td id='WDAACA4jpB5' style='background-color:#81c784;'>Y
+
+<br/></td><td id='WDAACAjnKb6' style='background-color:#f06292;'>N
+
+<br/></td><td id='WDAACA6pdd7' style=''>- this is object from Business that is active.
+
+<br/></td></tr><tr id='WDAACA1AKdY'><td id='WDAACAaeMtM' style=''>final_participant
+
+<br/></td><td id='WDAACAokKSb' style=''>Pointer
+
+<br/></td><td id='WDAACAuKidM' style=''>_User
+
+<br/></td><td id='WDAACA1NF5V' style=''>
+
+<br/></td><td id='WDAACAnOzuc' style=''>
+
+<br/></td><td id='WDAACA7hcCH' style='background-color:#f06292;'>N
+
+<br/></td><td id='WDAACAnBa9A' style='background-color:#f06292;'>N
+
+<br/></td><td id='WDAACAafsQr' style='background-color:#f06292;'>N
+
+<br/></td><td id='WDAACAxSDxu' style=''>- this column is derived when a final participant is chosen by the initiator
+
+<br/></td></tr><tr id='WDAACAaGIRB'><td id='WDAACAncm8R' style=''>event_type
+
+<br/></td><td id='WDAACAstZER' style=''>Number
+
+<br/></td><td id='WDAACAIrFlX' style=''>Int
+
+<br/></td><td id='WDAACAwBgU6' style=''>
+
+<br/></td><td id='WDAACAjpbnb' style=''>
+
+<br/></td><td id='WDAACAPgZNj' style='background-color:#f06292;'>N
+
+<br/></td><td id='WDAACADFzTB' style='background-color:#81c784;'>Y
+
+<br/></td><td id='WDAACA643oT' style='background-color:#f06292;'>N
+
+<br/></td><td id='WDAACAtYjpI' style=''>- this is a enumeration<br>1 = Treat<br>2 = Split<br>3 = ToGo
+
+<br/></td></tr><tr id='WDAACAyqCwk'><td id='WDAACAveEnJ' style=''>status
+
+<br/></td><td id='WDAACALJUix' style=''>Number
+
+<br/></td><td id='WDAACAbfdB3' style=''>Int
+
+<br/></td><td id='WDAACAnBUiG' style=''>
+
+<br/></td><td id='WDAACAvqCU2' style=''>
+
+<br/></td><td id='WDAACACsYeZ' style='background-color:#81c784;'>Y
+
+<br/></td><td id='WDAACAZbvNF' style='background-color:#81c784;'>Y
+
+<br/></td><td id='WDAACACMTDR' style='background-color:#f06292;'>N
+
+<br/></td><td id='WDAACAIWu47' style=''>- this is a enumeration <br>3 = Completed<br>4 = Suspended<br>5 = Cancelled
+
+<br/></td></tr><tr id='WDAACAwCwrF'><td id='WDAACAmUk4e' style=''>createdAt
+
+<br/></td><td id='WDAACAQSViT' style=''>datetime
+
+<br/></td><td id='WDAACAQ7cI2' style=''>
+
+<br/></td><td id='WDAACAlCu5o' style=''>
+
+<br/></td><td id='WDAACAtXgFY' style=''>
+
+<br/></td><td id='WDAACA3T8hE' style='background-color:#81c784;'>Y
+
+<br/></td><td id='WDAACAI3pSa' style='background-color:#f06292;'>N
+
+<br/></td><td id='WDAACAg2Yjz' style='background-color:#f06292;'>N
+
+<br/></td><td id='WDAACAHROpZ' style=''>
+
+<br/></td></tr><tr id='WDAACAvc72D'><td id='WDAACAdbvnN' style=''>updatedAt
+
+<br/></td><td id='WDAACAmkHC0' style=''>datetime
+
+<br/></td><td id='WDAACAGsBF5' style=''>
+
+<br/></td><td id='WDAACAFQkzx' style=''>
+
+<br/></td><td id='WDAACARi9Tc' style=''>
+
+<br/></td><td id='WDAACAdEOxR' style='background-color:#81c784;'>Y
+
+<br/></td><td id='WDAACAY8vFd' style='background-color:#f06292;'>N
+
+<br/></td><td id='WDAACAY3hbg' style='background-color:#f06292;'>N
+
+<br/></td><td id='WDAACA9oB5D' style=''>
+
+<br/></td></tr></tbody></table></div></body></html>

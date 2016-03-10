@@ -1,0 +1,435 @@
+<html><head><title>Table</title><meta charset="UTF-8"><link href="http://fonts.googleapis.com/css?family=Crimson+Text:400,400italic,700,700italic|Roboto:400,700,700italic,400italic" rel="stylesheet" type="text/css"><style>/*
+ * Copyright 2014 Quip
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License. You may obtain
+ * a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ */
+
+body {
+    font-size: 15px;
+    color: #333;
+    background: #fff;
+    padding: 60px 95px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern";
+    font-kerning: normal;
+    -moz-font-feature-settings: "kern";
+    -webkit-font-feature-settings: "kern";
+}
+
+/* Headings */
+h1, h2, h3, th {
+    font-family: Roboto, sans-serif;
+    font-weight: 700;
+    margin: 0;
+    margin-top: 1.25em;
+    margin-bottom: 0.75em;
+}
+
+h1 {
+    font-size: 35px;
+    line-height: 42px;
+}
+
+h1:first-child {
+    margin-top: 0;
+}
+
+h2 {
+    font-size: 18px;
+    line-height: 22px;
+}
+
+h3 {
+    text-transform: uppercase;
+    font-size: 13px;
+    line-height: 16px;
+}
+
+/* Body text */
+body, p, ul, ol, td {
+    font-family: 'Crimson Text', serif;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+blockquote, q {
+    display: block;
+    margin: 1em 0;
+    font-style: italic;
+}
+
+blockquote a, q a {
+    text-decoration: underline;
+}
+
+blockquote {
+    padding-left: 10px;
+    border-left: 4px solid #a6a6a6;
+}
+
+q {
+    color: #a6a6a6;
+    line-height: 40px;
+    font-size: 24px;
+    text-align: center;
+    quotes: none;
+}
+
+q a {
+    color: #a6a6a6;
+}
+
+code, pre {
+    font-family: Consolas, "Liberation Mono", Menlo, "Courier Prime Web", Courier, monospace;
+    background: #f3f3f3;
+}
+
+code {
+    padding: 1px;
+    margin: 0 -1px;
+    border-radius: 3px;
+}
+
+pre {
+    display: block;
+    line-height: 20px;
+    text-shadow: 0 1px white;
+    padding: 5px 5px 5px 30px;
+    white-space: nowrap;
+    position: relative;
+    margin: 1em 0;
+}
+
+pre:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 15px;
+    border-left: solid 1px #dadada;
+}
+
+/* Lists */
+div[data-section-style="5"],
+div[data-section-style="6"],
+div[data-section-style="7"] {
+    margin: 12px 0;
+}
+
+ul {
+    padding: 0 0 0 40px;
+}
+
+ul li {
+    margin-bottom: 0.4em;
+}
+
+/* Bulleted list */
+div[data-section-style="5"] ul {
+    list-style-type: disc;
+}
+div[data-section-style="5"] ul ul {
+    list-style-type: circle;
+}
+div[data-section-style="5"] ul ul ul {
+    list-style-type: square;
+}
+div[data-section-style="5"] ul ul ul ul {
+    list-style-type: disc;
+}
+div[data-section-style="5"] ul ul ul ul ul {
+    list-style-type: circle;
+}
+div[data-section-style="5"] ul ul ul ul ul ul {
+    list-style-type: square;
+}
+
+/* Numbered list */
+div[data-section-style="6"] ul {
+    list-style-type: decimal;
+}
+div[data-section-style="6"] ul ul {
+    list-style-type: lower-alpha;
+}
+div[data-section-style="6"] ul ul ul {
+    list-style-type: lower-roman;
+}
+div[data-section-style="6"] ul ul ul ul {
+    list-style-type: decimal;
+}
+div[data-section-style="6"] ul ul ul ul ul {
+    list-style-type: lower-alpha;
+}
+div[data-section-style="6"] ul ul ul ul ul ul {
+    list-style-type: lower-roman;
+}
+
+/* Checklist */
+div[data-section-style="7"] ul {
+    list-style-type: none;
+}
+
+div[data-section-style="7"] ul li:before {
+    content: "\2610";
+    position: absolute;
+    display: inline;
+    margin-right: 1.2em;
+    margin-left: -1.2em;
+}
+
+div[data-section-style="7"] ul li.parent:before {
+    content: "";
+}
+
+div[data-section-style="7"] ul li.parent {
+    font-weight: bold;
+}
+
+div[data-section-style="7"] ul li.checked {
+    text-decoration: line-through;
+}
+
+div[data-section-style="7"] ul li.checked:before {
+    content: "\2611";
+    text-decoration: none;
+}
+
+/* Tables */
+div[data-section-style="8"] {
+    margin: 12px 0;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: separate;
+    border: solid 1px #7c7c7c;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .25);
+    table-layout: fixed;
+    position: relative;
+}
+
+table th, table td {
+    padding: 2px 2px 0;
+    min-width: 1.5em;
+    word-wrap: break-word;
+}
+
+table th {
+    border-bottom: 1px solid #ccc;
+    background: #f0f0f0;
+    font-weight: bold;
+    vertical-align: bottom;
+    color: #3a4449;
+    text-align: center;
+}
+
+table td {
+    padding-top: 0;
+    border-left: 1px solid #e1e1e1;
+    border-top: 1px solid #e1e1e1;
+    vertical-align: top;
+}
+
+table td:first-child {
+    border-left: hidden;
+}
+
+table tr:first-child td {
+    border-top: hidden;
+}
+
+/* Images */
+div[data-section-style="11"] {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div[data-section-style="11"][data-section-float="0"] {
+    clear: both;
+    text-align: center;
+}
+
+div[data-section-style="11"][data-section-float="1"] {
+    float: left;
+    clear: left;
+    margin-right: 20px;
+}
+
+div[data-section-style="11"][data-section-float="2"] {
+    float: right;
+    clear: right;
+    margin-left: 20px;
+}
+
+div[data-section-style="11"] img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+}
+
+hr {
+    width: 70px;
+    margin: 20px auto;
+}
+</style></head><body><h1 id='JYIACAKFySX'>Table</h1>
+
+<div data-section-style='13'><table id='JYIACA9VlYR' title='Table1' style='width: 87.1333em;'><thead><tr><th id='JYIACAx2Pe2'  style='width: 9.2em'>Column Name
+
+<br/></th><th id='JYIACAxCVFb'  style='width: 6em'>Data Type
+
+<br/></th><th id='JYIACAdb7HA'  style='width: 7.4em'>Format
+
+<br/></th><th id='JYIACAJaHnx'  style='width: 8.46667em'>Default 默认值
+
+<br/></th><th id='JYIACAtQcYq'  style='width: 6em'>Column Notes 列注释
+
+<br/></th><th id='JYIACAqA03A'  style='width: 8em'>Readonly 只读 (Yes or No)
+
+<br/></th><th id='JYIACAS3AJi'  style='width: 8em'>Required 必填项 (Yes or No)
+
+<br/></th><th id='JYIACATmyEW'  style='width: 6em'>Hidden from client 客户端不可见 (Yes or No)
+
+<br/></th><th id='JYIACAxOgEF'  style='width: 28.0667em'>Notes
+
+<br/></th></tr></thead><tbody><tr id='JYIACAmYqmO'><td id='JYIACAT90AA' style=''>objectId
+
+<br/></td><td id='JYIACA6QNZs' style=''>String
+
+<br/></td><td id='JYIACAqGR2d' style=''>
+
+<br/></td><td id='JYIACAJnvMe' style=''>
+
+<br/></td><td id='JYIACAglhrN' style=''>
+
+<br/></td><td id='JYIACAo7wAk' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='JYIACAAcdTu' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='JYIACAe7gsk' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='JYIACAX9GCk' style=''>
+
+<br/></td></tr><tr id='JYIACARcIXO'><td id='JYIACAOKwaB' style=''>ACL
+
+<br/></td><td id='JYIACA8xUzd' style=''>ACL
+
+<br/></td><td id='JYIACAKPXcI' style=''>
+
+<br/></td><td id='JYIACA3G0xb' style=''>
+
+<br/></td><td id='JYIACA7VcR3' style=''>
+
+<br/></td><td id='JYIACAMl8Vn' style='background-color:#4dd0e1;'>TBD
+
+<br/></td><td id='JYIACAw9Q7j' style='background-color:#4dd0e1;'>TBD
+
+<br/></td><td id='JYIACAQlcYZ' style='background-color:#4dd0e1;'>TBD
+
+<br/></td><td id='JYIACAG1syS' style=''>
+
+<br/></td></tr><tr id='JYIACAJ8OIA'><td id='JYIACAfNrNh' style=''>participant
+
+<br/></td><td id='JYIACAkBXgz' style=''>Pointer
+
+<br/></td><td id='JYIACAtLOmV' style=''>_User
+
+<br/></td><td id='JYIACAjbwuo' style=''>
+
+<br/></td><td id='JYIACACpa2Y' style=''>
+
+<br/></td><td id='JYIACANuTyc' style='background-color:#f06292;'>N
+
+<br/></td><td id='JYIACAi9puI' style='background-color:#81c784;'>Y
+
+<br/></td><td id='JYIACA54Hp3' style='background-color:#f06292;'>N
+
+<br/></td><td id='JYIACAV2uyl' style=''>- this is objectId from User table and Type of user must be 1 = User, and this user is active
+
+<br/></td></tr><tr id='JYIACAeKN51'><td id='JYIACAZrlTw' style=''>event
+
+<br/></td><td id='JYIACAHicfx' style=''>Pointer
+
+<br/></td><td id='JYIACAcNO8m' style=''>Event
+
+<br/></td><td id='JYIACAXfBUt' style=''>
+
+<br/></td><td id='JYIACAG7q7Y' style=''>
+
+<br/></td><td id='JYIACAF9m7l' style='background-color:#f06292;'>N
+
+<br/></td><td id='JYIACAuCABQ' style='background-color:#81c784;'>Y
+
+<br/></td><td id='JYIACAtSNsb' style='background-color:#f06292;'>N
+
+<br/></td><td id='JYIACAZmTmL' style=''>
+
+<br/></td></tr><tr id='JYIACAuddKh'><td id='JYIACAwcnxW' style=''>status
+
+<br/></td><td id='JYIACAdSMUo' style=''>Number
+
+<br/></td><td id='JYIACAQi5C5' style=''>Int
+
+<br/></td><td id='JYIACAd3aBY' style=''>
+
+<br/></td><td id='JYIACAhXIIX' style=''>
+
+<br/></td><td id='JYIACAHX9hA' style='background-color:#81c784;'>Y
+
+<br/></td><td id='JYIACAnMZOZ' style='background-color:#81c784;'>Y
+
+<br/></td><td id='JYIACAMXLdB' style='background-color:#f06292;'>N
+
+<br/></td><td id='JYIACAfBTki' style=''>- this is an enumeration <br>3 = Completed
+
+<br/></td></tr><tr id='JYIACAujwYh'><td id='JYIACAfdp4F' style=''>createdAt
+
+<br/></td><td id='JYIACADhCiY' style=''>datetime
+
+<br/></td><td id='JYIACAN5H5t' style=''>
+
+<br/></td><td id='JYIACABzZqg' style=''>
+
+<br/></td><td id='JYIACAJtr7a' style=''>
+
+<br/></td><td id='JYIACAciITO' style='background-color:#81c784;'>Y
+
+<br/></td><td id='JYIACAA0Xc7' style='background-color:#f06292;'>N
+
+<br/></td><td id='JYIACAPPbuf' style='background-color:#f06292;'>N
+
+<br/></td><td id='JYIACAegfvP' style=''>
+
+<br/></td></tr><tr id='JYIACAy6tGx'><td id='JYIACA51yCQ' style=''>updatedAt
+
+<br/></td><td id='JYIACAQihzI' style=''>datetime
+
+<br/></td><td id='JYIACANRhzh' style=''>
+
+<br/></td><td id='JYIACAh5CCp' style=''>
+
+<br/></td><td id='JYIACAn5MY8' style=''>
+
+<br/></td><td id='JYIACAgeNl8' style='background-color:#81c784;'>Y
+
+<br/></td><td id='JYIACAJnlWu' style='background-color:#f06292;'>N
+
+<br/></td><td id='JYIACAiJigU' style='background-color:#f06292;'>N
+
+<br/></td><td id='JYIACAp9wqo' style=''>
+
+<br/></td></tr></tbody></table></div></body></html>

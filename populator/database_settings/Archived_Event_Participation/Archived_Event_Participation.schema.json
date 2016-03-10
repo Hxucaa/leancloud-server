@@ -1,0 +1,1 @@
+{"schema":{"updatedAt":{"type":"Date"},"ACL":{"type":"ACL"},"objectId":{"type":"String"},"createdAt":{"type":"Date"},"participant":{"required":true,"className":"_User","v":1,"type":"Pointer"},"event":{"required":true,"className":"Archived_Event","v":1,"type":"Pointer"},"status":{"required":true,"v":1,"type":"Number"}}}

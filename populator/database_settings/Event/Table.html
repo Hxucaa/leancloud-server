@@ -1,0 +1,519 @@
+<html><head><title>Table</title><meta charset="UTF-8"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Crimson+Text:400,400italic,700,700italic|Roboto:400,700,700italic,400italic" type="text/css"><style>/*
+ * Copyright 2014 Quip
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License. You may obtain
+ * a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ */
+
+body {
+    font-size: 15px;
+    color: #333;
+    background: #fff;
+    padding: 60px 95px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern";
+    font-kerning: normal;
+    -moz-font-feature-settings: "kern";
+    -webkit-font-feature-settings: "kern";
+}
+
+/* Headings */
+h1, h2, h3, th {
+    font-family: Roboto, sans-serif;
+    font-weight: 700;
+    margin: 0;
+    margin-top: 1.25em;
+    margin-bottom: 0.75em;
+}
+
+h1 {
+    font-size: 35px;
+    line-height: 42px;
+}
+
+h1:first-child {
+    margin-top: 0;
+}
+
+h2 {
+    font-size: 18px;
+    line-height: 22px;
+}
+
+h3 {
+    text-transform: uppercase;
+    font-size: 13px;
+    line-height: 16px;
+}
+
+/* Body text */
+body, p, ul, ol, td {
+    font-family: 'Crimson Text', serif;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+blockquote, q {
+    display: block;
+    margin: 1em 0;
+    font-style: italic;
+}
+
+blockquote a, q a {
+    text-decoration: underline;
+}
+
+blockquote {
+    padding-left: 10px;
+    border-left: 4px solid #a6a6a6;
+}
+
+q {
+    color: #a6a6a6;
+    line-height: 40px;
+    font-size: 24px;
+    text-align: center;
+    quotes: none;
+}
+
+q a {
+    color: #a6a6a6;
+}
+
+code, pre {
+    font-family: Consolas, "Liberation Mono", Menlo, "Courier Prime Web", Courier, monospace;
+    background: #f3f3f3;
+}
+
+code {
+    padding: 1px;
+    margin: 0 -1px;
+    border-radius: 3px;
+}
+
+pre {
+    display: block;
+    line-height: 20px;
+    text-shadow: 0 1px white;
+    padding: 5px 5px 5px 30px;
+    white-space: nowrap;
+    position: relative;
+    margin: 1em 0;
+}
+
+pre:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 15px;
+    border-left: solid 1px #dadada;
+}
+
+/* Lists */
+div[data-section-style="5"],
+div[data-section-style="6"],
+div[data-section-style="7"] {
+    margin: 12px 0;
+}
+
+ul {
+    padding: 0 0 0 40px;
+}
+
+ul li {
+    margin-bottom: 0.4em;
+}
+
+/* Bulleted list */
+div[data-section-style="5"] ul {
+    list-style-type: disc;
+}
+div[data-section-style="5"] ul ul {
+    list-style-type: circle;
+}
+div[data-section-style="5"] ul ul ul {
+    list-style-type: square;
+}
+div[data-section-style="5"] ul ul ul ul {
+    list-style-type: disc;
+}
+div[data-section-style="5"] ul ul ul ul ul {
+    list-style-type: circle;
+}
+div[data-section-style="5"] ul ul ul ul ul ul {
+    list-style-type: square;
+}
+
+/* Numbered list */
+div[data-section-style="6"] ul {
+    list-style-type: decimal;
+}
+div[data-section-style="6"] ul ul {
+    list-style-type: lower-alpha;
+}
+div[data-section-style="6"] ul ul ul {
+    list-style-type: lower-roman;
+}
+div[data-section-style="6"] ul ul ul ul {
+    list-style-type: decimal;
+}
+div[data-section-style="6"] ul ul ul ul ul {
+    list-style-type: lower-alpha;
+}
+div[data-section-style="6"] ul ul ul ul ul ul {
+    list-style-type: lower-roman;
+}
+
+/* Checklist */
+div[data-section-style="7"] ul {
+    list-style-type: none;
+}
+
+div[data-section-style="7"] ul li:before {
+    content: "\2610";
+    position: absolute;
+    display: inline;
+    margin-right: 1.2em;
+    margin-left: -1.2em;
+}
+
+div[data-section-style="7"] ul li.parent:before {
+    content: "";
+}
+
+div[data-section-style="7"] ul li.parent {
+    font-weight: bold;
+}
+
+div[data-section-style="7"] ul li.checked {
+    text-decoration: line-through;
+}
+
+div[data-section-style="7"] ul li.checked:before {
+    content: "\2611";
+    text-decoration: none;
+}
+
+/* Tables */
+div[data-section-style="8"] {
+    margin: 12px 0;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: separate;
+    border: solid 1px #7c7c7c;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .25);
+    table-layout: fixed;
+    position: relative;
+}
+
+table th, table td {
+    padding: 2px 2px 0;
+    min-width: 1.5em;
+    word-wrap: break-word;
+}
+
+table th {
+    border-bottom: 1px solid #ccc;
+    background: #f0f0f0;
+    font-weight: bold;
+    vertical-align: bottom;
+    color: #3a4449;
+    text-align: center;
+}
+
+table td {
+    padding-top: 0;
+    border-left: 1px solid #e1e1e1;
+    border-top: 1px solid #e1e1e1;
+    vertical-align: top;
+}
+
+table td:first-child {
+    border-left: hidden;
+}
+
+table tr:first-child td {
+    border-top: hidden;
+}
+
+/* Images */
+div[data-section-style="11"] {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div[data-section-style="11"][data-section-float="0"] {
+    clear: both;
+    text-align: center;
+}
+
+div[data-section-style="11"][data-section-float="1"] {
+    float: left;
+    clear: left;
+    margin-right: 20px;
+}
+
+div[data-section-style="11"][data-section-float="2"] {
+    float: right;
+    clear: right;
+    margin-left: 20px;
+}
+
+div[data-section-style="11"] img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+}
+
+hr {
+    width: 70px;
+    margin: 20px auto;
+}
+</style></head><body><h1 id='AfGACAzflpo'>Table</h1>
+
+<div data-section-style='13'><table id='AfGACAtjvGN' title='Table1' style='width: 87.8667em;'><thead><tr><th id='AfGACAvrGMD'  style='width: 9.2em'>Column Name
+
+<br/></th><th id='AfGACADzWrt'  style='width: 6em'>Data Type
+
+<br/></th><th id='AfGACA0KnmW'  style='width: 8.13333em'>Format
+
+<br/></th><th id='AfGACA0JYoD'  style='width: 8.46667em'>Default 默认值
+
+<br/></th><th id='AfGACAL4RVd'  style='width: 6em'>Column Notes 列注释
+
+<br/></th><th id='AfGACApWpBU'  style='width: 8em'>Readonly 只读 (Yes or No)
+
+<br/></th><th id='AfGACAtfdO2'  style='width: 8em'>Required 必填项 (Yes or No)
+
+<br/></th><th id='AfGACA98lrd'  style='width: 6em'>Hidden from client 客户端不可见 (Yes or No)
+
+<br/></th><th id='AfGACAmgB00'  style='width: 28.0667em'>Notes
+
+<br/></th></tr></thead><tbody><tr id='AfGACA2Xehp'><td id='AfGACA4k4O7' style=''>objectId
+
+<br/></td><td id='AfGACAEiUAR' style=''>String
+
+<br/></td><td id='AfGACAErCq3' style=''>
+
+<br/></td><td id='AfGACAutml3' style=''>
+
+<br/></td><td id='AfGACAlg1xJ' style=''>
+
+<br/></td><td id='AfGACAEtEnV' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='AfGACAgnNOB' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='AfGACAjfqIJ' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='AfGACANcWXk' style=''>
+
+<br/></td></tr><tr id='AfGACA932Jq'><td id='AfGACAClyqg' style=''>ACL
+
+<br/></td><td id='AfGACA0pFxk' style=''>ACL
+
+<br/></td><td id='AfGACApDiTC' style=''>
+
+<br/></td><td id='AfGACArym2Q' style=''>
+
+<br/></td><td id='AfGACAKUBP9' style=''>
+
+<br/></td><td id='AfGACAiyo4b' style='background-color:#4dd0e1;'>TBD
+
+<br/></td><td id='AfGACAbLkaC' style='background-color:#4dd0e1;'>TBD
+
+<br/></td><td id='AfGACAalI04' style='background-color:#4dd0e1;'>TBD
+
+<br/></td><td id='AfGACAeAZ3p' style=''>
+
+<br/></td></tr><tr id='AfGACAmBpYl'><td id='AfGACATvByi' style=''>initiator
+
+<br/></td><td id='AfGACACQXZX' style=''>Pointer
+
+<br/></td><td id='AfGACA4aYWQ' style=''>_User
+
+<br/></td><td id='AfGACAh8sP2' style=''>
+
+<br/></td><td id='AfGACAASOkf' style=''>
+
+<br/></td><td id='AfGACAG91oE' style='background-color:#f06292;'>N
+
+<br/></td><td id='AfGACA1jTLp' style='background-color:#81c784;'>Y
+
+<br/></td><td id='AfGACAmvNoQ' style='background-color:#f06292;'>N
+
+<br/></td><td id='AfGACAvGhja' style=''>- this is objectId from User table and Type of user must be 1 = User, and this user is active
+
+<br/></td></tr><tr id='AfGACAxjJzP'><td id='AfGACAjDc7m' style=''>business
+
+<br/></td><td id='AfGACApXXt2' style=''>Pointer
+
+<br/></td><td id='AfGACAFrpRm' style=''>Business
+
+<br/></td><td id='AfGACAoQpkg' style=''>
+
+<br/></td><td id='AfGACANal7a' style=''>
+
+<br/></td><td id='AfGACAB0Y9Z' style='background-color:#f06292;'>N
+
+<br/></td><td id='AfGACAjc6JQ' style='background-color:#81c784;'>Y
+
+<br/></td><td id='AfGACANidXg' style='background-color:#f06292;'>N
+
+<br/></td><td id='AfGACAeJKYg' style=''>- this is object from Business that is active.
+
+<br/></td></tr><tr id='AfGACAW9YgI'><td id='AfGACAK1tmj' style=''>final_participant
+
+<br/></td><td id='AfGACAWXtKv' style=''>Pointer
+
+<br/></td><td id='AfGACAPl73L' style=''>_User
+
+<br/></td><td id='AfGACAWRoPK' style=''>
+
+<br/></td><td id='AfGACABWhM7' style=''>
+
+<br/></td><td id='AfGACAgs6GP' style='background-color:#f06292;'>N
+
+<br/></td><td id='AfGACAqAI2Q' style='background-color:#f06292;'>N
+
+<br/></td><td id='AfGACAsfQ9L' style='background-color:#f06292;'>N
+
+<br/></td><td id='AfGACA8CEm6' style=''>- this column is derived when a final participant is chosen by the initiator
+
+<br/></td></tr><tr id='AfGACAv3POk'><td id='AfGACAPJCoi' style=''>event_type
+
+<br/></td><td id='AfGACAYTEic' style=''>Number
+
+<br/></td><td id='AfGACATYRqy' style=''>Int
+
+<br/></td><td id='AfGACAHNGBY' style=''>
+
+<br/></td><td id='AfGACACJJfD' style=''>
+
+<br/></td><td id='AfGACAuhkxY' style='background-color:#f06292;'>N
+
+<br/></td><td id='AfGACAMVoZ9' style='background-color:#81c784;'>Y
+
+<br/></td><td id='AfGACAJTIUR' style='background-color:#f06292;'>N
+
+<br/></td><td id='AfGACA8kmsc' style=''>- this is a enumeration<br>1 = Treat<br>2 = Split<br>3 = ToGo
+
+<br/></td></tr><tr id='AfGACAOrPOS'><td id='AfGACAzCorg' style=''>status
+
+<br/></td><td id='AfGACAZVJbZ' style=''>Number
+
+<br/></td><td id='AfGACAzR3SK' style=''>Int
+
+<br/></td><td id='AfGACARQx7D' style=''>
+
+<br/></td><td id='AfGACAZTei6' style=''>
+
+<br/></td><td id='AfGACAzSCvW' style='background-color:#81c784;'>Y
+
+<br/></td><td id='AfGACA9a2Eh' style='background-color:#81c784;'>Y
+
+<br/></td><td id='AfGACALjJug' style='background-color:#f06292;'>N
+
+<br/></td><td id='AfGACAcZZF5' style=''>- this is a enumeration <br>1 = Open<br>2 = Started
+
+<br/></td></tr><tr id='AfGACAesYV7'><td id='AfGACAFfbsE' style=''>createdAt
+
+<br/></td><td id='AfGACAcIiV1' style=''>datetime
+
+<br/></td><td id='AfGACAVfpAG' style=''>
+
+<br/></td><td id='AfGACA5oJ78' style=''>
+
+<br/></td><td id='AfGACAU9uQz' style=''>
+
+<br/></td><td id='AfGACAnKnI8' style='background-color:#81c784;'>Y
+
+<br/></td><td id='AfGACAzud56' style='background-color:#f06292;'>N
+
+<br/></td><td id='AfGACAtggRm' style='background-color:#f06292;'>N
+
+<br/></td><td id='AfGACAm572h' style=''>
+
+<br/></td></tr><tr id='AfGACA3jlgu'><td id='AfGACAMNVH2' style=''>updatedAt
+
+<br/></td><td id='AfGACAbEj1A' style=''>datetime
+
+<br/></td><td id='AfGACAkiod4' style=''>
+
+<br/></td><td id='AfGACAdX9YH' style=''>
+
+<br/></td><td id='AfGACAuaCXe' style=''>
+
+<br/></td><td id='AfGACAMg8wZ' style='background-color:#81c784;'>Y
+
+<br/></td><td id='AfGACAWXg9k' style='background-color:#f06292;'>N
+
+<br/></td><td id='AfGACAE0ZoG' style='background-color:#f06292;'>N
+
+<br/></td><td id='AfGACAdc76Z' style=''>
+
+<br/></td></tr></tbody></table></div><div data-section-style='13'><table id='AfGACAZKJjA' title='Table2' style='width: 24em;'><thead><tr><th id='AfGACALqRK8' class='empty' style='width: 6em'>A<br/></th><th id='AfGACAHMfMu' class='empty' style='width: 6em'>B<br/></th><th id='AfGACAsgCo5' class='empty' style='width: 6em'>C<br/></th><th id='AfGACAEME3y' class='empty' style='width: 6em'>D<br/></th></tr></thead><tbody><tr id='AfGACA0uw8M'><td id='AfGACAlEyGK' style=''>
+
+<br/></td><td id='AfGACA27ES0' style=''>
+
+<br/></td><td id='AfGACA4vqr3' style=''>
+
+<br/></td><td id='AfGACAdgdij' style=''>
+
+<br/></td></tr><tr id='AfGACAp9g47'><td id='AfGACAPIgKZ' style=''>
+
+<br/></td><td id='AfGACAMuN55' style=''>
+
+<br/></td><td id='AfGACAFoDYO' style=''>
+
+<br/></td><td id='AfGACAwKleN' style=''>
+
+<br/></td></tr><tr id='AfGACAfwC00'><td id='AfGACAjGvoJ' style=''>
+
+<br/></td><td id='AfGACAU1Htt' style=''>
+
+<br/></td><td id='AfGACAibk3D' style=''>
+
+<br/></td><td id='AfGACAs8cHT' style=''>
+
+<br/></td></tr><tr id='AfGACA8fjFj'><td id='AfGACAnzdyv' style=''>
+
+<br/></td><td id='AfGACA31MEX' style=''>
+
+<br/></td><td id='AfGACAmUPQj' style=''>
+
+<br/></td><td id='AfGACAiwuU6' style=''>
+
+<br/></td></tr><tr id='AfGACA85TrG'><td id='AfGACAJtF4h' style=''>
+
+<br/></td><td id='AfGACAyYOYm' style=''>
+
+<br/></td><td id='AfGACAi36Ba' style=''>
+
+<br/></td><td id='AfGACASSI20' style=''>
+
+<br/></td></tr><tr id='AfGACAA0qpq'><td id='AfGACAeaPTF' style=''>
+
+<br/></td><td id='AfGACADpsl2' style=''>
+
+<br/></td><td id='AfGACA4FNei' style=''>
+
+<br/></td><td id='AfGACACY6Sx' style=''>
+
+<br/></td></tr></tbody></table></div></body></html>

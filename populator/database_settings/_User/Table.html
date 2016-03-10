@@ -1,0 +1,1035 @@
+<html><head><title>Table</title><meta charset="UTF-8"><link type="text/css" href="http://fonts.googleapis.com/css?family=Crimson+Text:400,400italic,700,700italic|Roboto:400,700,700italic,400italic" rel="stylesheet"><style>/*
+ * Copyright 2014 Quip
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License. You may obtain
+ * a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ */
+
+body {
+    font-size: 15px;
+    color: #333;
+    background: #fff;
+    padding: 60px 95px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern";
+    font-kerning: normal;
+    -moz-font-feature-settings: "kern";
+    -webkit-font-feature-settings: "kern";
+}
+
+/* Headings */
+h1, h2, h3, th {
+    font-family: Roboto, sans-serif;
+    font-weight: 700;
+    margin: 0;
+    margin-top: 1.25em;
+    margin-bottom: 0.75em;
+}
+
+h1 {
+    font-size: 35px;
+    line-height: 42px;
+}
+
+h1:first-child {
+    margin-top: 0;
+}
+
+h2 {
+    font-size: 18px;
+    line-height: 22px;
+}
+
+h3 {
+    text-transform: uppercase;
+    font-size: 13px;
+    line-height: 16px;
+}
+
+/* Body text */
+body, p, ul, ol, td {
+    font-family: 'Crimson Text', serif;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+blockquote, q {
+    display: block;
+    margin: 1em 0;
+    font-style: italic;
+}
+
+blockquote a, q a {
+    text-decoration: underline;
+}
+
+blockquote {
+    padding-left: 10px;
+    border-left: 4px solid #a6a6a6;
+}
+
+q {
+    color: #a6a6a6;
+    line-height: 40px;
+    font-size: 24px;
+    text-align: center;
+    quotes: none;
+}
+
+q a {
+    color: #a6a6a6;
+}
+
+code, pre {
+    font-family: Consolas, "Liberation Mono", Menlo, "Courier Prime Web", Courier, monospace;
+    background: #f3f3f3;
+}
+
+code {
+    padding: 1px;
+    margin: 0 -1px;
+    border-radius: 3px;
+}
+
+pre {
+    display: block;
+    line-height: 20px;
+    text-shadow: 0 1px white;
+    padding: 5px 5px 5px 30px;
+    white-space: nowrap;
+    position: relative;
+    margin: 1em 0;
+}
+
+pre:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 15px;
+    border-left: solid 1px #dadada;
+}
+
+/* Lists */
+div[data-section-style="5"],
+div[data-section-style="6"],
+div[data-section-style="7"] {
+    margin: 12px 0;
+}
+
+ul {
+    padding: 0 0 0 40px;
+}
+
+ul li {
+    margin-bottom: 0.4em;
+}
+
+/* Bulleted list */
+div[data-section-style="5"] ul {
+    list-style-type: disc;
+}
+div[data-section-style="5"] ul ul {
+    list-style-type: circle;
+}
+div[data-section-style="5"] ul ul ul {
+    list-style-type: square;
+}
+div[data-section-style="5"] ul ul ul ul {
+    list-style-type: disc;
+}
+div[data-section-style="5"] ul ul ul ul ul {
+    list-style-type: circle;
+}
+div[data-section-style="5"] ul ul ul ul ul ul {
+    list-style-type: square;
+}
+
+/* Numbered list */
+div[data-section-style="6"] ul {
+    list-style-type: decimal;
+}
+div[data-section-style="6"] ul ul {
+    list-style-type: lower-alpha;
+}
+div[data-section-style="6"] ul ul ul {
+    list-style-type: lower-roman;
+}
+div[data-section-style="6"] ul ul ul ul {
+    list-style-type: decimal;
+}
+div[data-section-style="6"] ul ul ul ul ul {
+    list-style-type: lower-alpha;
+}
+div[data-section-style="6"] ul ul ul ul ul ul {
+    list-style-type: lower-roman;
+}
+
+/* Checklist */
+div[data-section-style="7"] ul {
+    list-style-type: none;
+}
+
+div[data-section-style="7"] ul li:before {
+    content: "\2610";
+    position: absolute;
+    display: inline;
+    margin-right: 1.2em;
+    margin-left: -1.2em;
+}
+
+div[data-section-style="7"] ul li.parent:before {
+    content: "";
+}
+
+div[data-section-style="7"] ul li.parent {
+    font-weight: bold;
+}
+
+div[data-section-style="7"] ul li.checked {
+    text-decoration: line-through;
+}
+
+div[data-section-style="7"] ul li.checked:before {
+    content: "\2611";
+    text-decoration: none;
+}
+
+/* Tables */
+div[data-section-style="8"] {
+    margin: 12px 0;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: separate;
+    border: solid 1px #7c7c7c;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .25);
+    table-layout: fixed;
+    position: relative;
+}
+
+table th, table td {
+    padding: 2px 2px 0;
+    min-width: 1.5em;
+    word-wrap: break-word;
+}
+
+table th {
+    border-bottom: 1px solid #ccc;
+    background: #f0f0f0;
+    font-weight: bold;
+    vertical-align: bottom;
+    color: #3a4449;
+    text-align: center;
+}
+
+table td {
+    padding-top: 0;
+    border-left: 1px solid #e1e1e1;
+    border-top: 1px solid #e1e1e1;
+    vertical-align: top;
+}
+
+table td:first-child {
+    border-left: hidden;
+}
+
+table tr:first-child td {
+    border-top: hidden;
+}
+
+/* Images */
+div[data-section-style="11"] {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div[data-section-style="11"][data-section-float="0"] {
+    clear: both;
+    text-align: center;
+}
+
+div[data-section-style="11"][data-section-float="1"] {
+    float: left;
+    clear: left;
+    margin-right: 20px;
+}
+
+div[data-section-style="11"][data-section-float="2"] {
+    float: right;
+    clear: right;
+    margin-left: 20px;
+}
+
+div[data-section-style="11"] img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+}
+
+hr {
+    width: 70px;
+    margin: 20px auto;
+}
+</style></head><body><h1 id='ISfACAIST32'>Table</h1>
+
+<div data-section-style='13'><table id='ISfACAoCO5t' title='Table1' style='width: 103.933em;'><thead><tr><th id='ISfACAK7Jys'  style='width: 10.5333em'>Column Name
+
+<br/></th><th id='ISfACAsHUTJ'  style='width: 4.93333em'>Data Type
+
+<br/></th><th id='ISfACAbYSlX'  style='width: 5.26667em'>Format
+
+<br/></th><th id='ISfACA63NdM'  style='width: 7.8em'>Default 默认值
+
+<br/></th><th id='ISfACAnfKQx'  style='width: 6em'>Column Notes 列注释
+
+<br/></th><th id='ISfACAgrb3P'  style='width: 7em'>Readonly 只读 (Yes or No)
+
+<br/></th><th id='ISfACAh0aAZ'  style='width: 8em'>Only allow user with access to the column 只限拥有对应列属性的用户读写 (Yes or No)
+
+<br/></th><th id='ISfACAonslE'  style='width: 7.66667em'>Required 必填项 (Yes or No)
+
+<br/></th><th id='ISfACAqWFnl'  style='width: 7.6em'>Hidden from client 客户端不可见 (Yes or No)
+
+<br/></th><th id='ISfACAChvZ9'  style='width: 5.06667em'>Auto-Increment 自增
+
+<br/></th><th id='ISfACAcn66y'  style='width: 6em'>Rest Auto-Increment to default value 重置自增 自增值重置为列默认值
+
+<br/></th><th id='ISfACAFES6n'  style='width: 28.0667em'>Notes
+
+<br/></th></tr></thead><tbody><tr id='ISfACAvQk0p'><td id='ISfACA6Ut9p' style=''>objectId
+
+<br/></td><td id='ISfACAXNckf' style=''>String
+
+<br/></td><td id='ISfACAaBHOq' style=''>
+
+<br/></td><td id='ISfACAjdtwC' style=''>automatically filled by system
+
+<br/></td><td id='ISfACAgsJFf' style=''>
+
+<br/></td><td id='ISfACA8xfeM' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAMXzwU' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAQitgb' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAlvjF3' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACA0McrO' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAvvYga' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAoccYR' style=''>
+
+<br/></td></tr><tr id='ISfACAU7D7g'><td id='ISfACA74nax' style=''>ACL
+
+<br/></td><td id='ISfACAnVZWu' style=''>ACL
+
+<br/></td><td id='ISfACA1Hk2X' style=''>
+
+<br/></td><td id='ISfACAbmFYz' style=''>TBD
+
+<br/></td><td id='ISfACAYwiwG' style=''>
+
+<br/></td><td id='ISfACAEYS4Q' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACArns84' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAFjdO4' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACA1U65B' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAfXSAJ' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAlZEGx' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAGxUsf' style=''>
+
+<br/></td></tr><tr id='ISfACA8A32g'><td id='ISfACAOxkow' style=''>mobilePhoneNumber
+
+<br/></td><td id='ISfACAonqQy' style=''>String
+
+<br/></td><td id='ISfACAlEtGt' style=''>phone
+
+<br/></td><td id='ISfACAp2pYv' style=''>
+
+<br/></td><td id='ISfACAwFPQT' style=''>
+
+<br/></td><td id='ISfACA8cxGS' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAWlD5w' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACARgyWs' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACA5tM04' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAyGdsJ' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAejDpE' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAhzXRu' style=''>- Uniqueness ensured by indexing
+
+<br/></td></tr><tr id='ISfACAYUKCc'><td id='ISfACAmrQTF' style=''>mobilePhoneVerified
+
+<br/></td><td id='ISfACAhAMFR' style=''>Bool
+
+<br/></td><td id='ISfACAsGACq' style=''>
+
+<br/></td><td id='ISfACAthy7m' style=''>FALSE
+
+<br/></td><td id='ISfACAXwOqY' style=''>
+
+<br/></td><td id='ISfACACMw8l' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACA2eTGO' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAtI40W' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAGotdZ' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAlZNvq' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAGwyPp' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAEexJu' style=''>Automatically set to false by LeanCloud<br>There will be 2 status of value:<br>- True: phone number was verified<br>- False: phone number was not verified<br>if this column is set true or false, then mobilePhoneNumber must have a valid phone number
+
+<br/></td></tr><tr id='ISfACAx9ttD'><td id='ISfACAf4mIr' style=''>salt
+
+<br/></td><td id='ISfACAZqMn2' style=''>String
+
+<br/></td><td id='ISfACAqMy5X' style=''>
+
+<br/></td><td id='ISfACAJO2Gw' style=''>
+
+<br/></td><td id='ISfACAhMTYl' style=''>
+
+<br/></td><td id='ISfACAta4t9' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAZkxD7' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAHbRsy' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAm431M' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAcyMaF' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACATuALv' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAsIUn8' style=''>
+
+<br/></td></tr><tr id='ISfACAWbreS'><td id='ISfACAgBz8o' style=''>sessionToken
+
+<br/></td><td id='ISfACAWZtcG' style=''>String
+
+<br/></td><td id='ISfACAPC1dS' style=''>
+
+<br/></td><td id='ISfACABC4tS' style=''>
+
+<br/></td><td id='ISfACARmnYY' style=''>
+
+<br/></td><td id='ISfACAyVveQ' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAjBYuL' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAXjF18' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACA332cs' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAa48MN' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAP12y3' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAjZKjS' style=''>
+
+<br/></td></tr><tr id='ISfACAoSGdh'><td id='ISfACArj4rF' style=''>authData
+
+<br/></td><td id='ISfACAUfZ45' style=''>Object
+
+<br/></td><td id='ISfACAg5HT9' style=''>
+
+<br/></td><td id='ISfACA5UZBK' style=''>
+
+<br/></td><td id='ISfACAxUFl0' style=''>
+
+<br/></td><td id='ISfACASXBxb' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACA2Qvhi' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACABhVm9' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAX1rB3' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAQqk6C' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAUzLnd' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAd4av3' style=''>
+
+<br/></td></tr><tr id='ISfACARLC60'><td id='ISfACAqGr7V' style=''>email
+
+<br/></td><td id='ISfACASJ2WU' style=''>String
+
+<br/></td><td id='ISfACARTNRk' style=''>email
+
+<br/></td><td id='ISfACAfB4pN' style=''>
+
+<br/></td><td id='ISfACAvba18' style=''>
+
+<br/></td><td id='ISfACAURG3r' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAz4NK9' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAHJ2yd' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACA4uA28' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAllAMQ' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAfgb5P' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACANlml1' style=''>- Uniqueness ensured by indexing
+
+<br/></td></tr><tr id='ISfACAXZYW2'><td id='ISfACAi4vJr' style=''>emailVerified
+
+<br/></td><td id='ISfACAx7G68' style=''>Bool
+
+<br/></td><td id='ISfACAz8bjp' style=''>
+
+<br/></td><td id='ISfACA76mRm' style=''>FALSE
+
+<br/></td><td id='ISfACA2aw7L' style=''>
+
+<br/></td><td id='ISfACAnAXVq' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAmTNat' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAXb7QO' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACARqnVx' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAr5S0j' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAhYkQw' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAEefjI' style=''>Automatically set to false by LeanCloud<br>There will be 2 status of value:<br>- True: email was verified<br>- False: email was not verified<br>If the value is true or false, then email column must have a valid email address<br>
+
+<br/></td></tr><tr id='ISfACAN5zL9'><td id='ISfACAriRDr' style=''>username
+
+<br/></td><td id='ISfACAIBchA' style=''>String
+
+<br/></td><td id='ISfACAitMXd' style=''>
+
+<br/></td><td id='ISfACA89cdS' style=''>
+
+<br/></td><td id='ISfACAfc3Jr' style=''>
+
+<br/></td><td id='ISfACABcvyJ' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAKlkod' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAIjTVn' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAAUZ0d' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACA4mCmA' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAiJmzs' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACARAF9q' style=''>- must have a unique userName<br>- register in with 3rd party authentication system, userName will be assigned a unique value by us
+
+<br/></td></tr><tr id='ISfACA8EPKS'><td id='ISfACALTrYm' style=''>password
+
+<br/></td><td id='ISfACAdpAJI' style=''>String
+
+<br/></td><td id='ISfACAq4EYl' style=''>
+
+<br/></td><td id='ISfACAKM8RR' style=''>
+
+<br/></td><td id='ISfACAWzDVC' style=''>
+
+<br/></td><td id='ISfACAGxLWt' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACASiCYW' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAa7xLw' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACABXbCl' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAX9sn8' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAWDZMF' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAj74vc' style=''>- everyone should set its own password, this password will be case-senstive because it will be hashed. That means it is a one-way reading. So "Abc" and "abc" will be treated two different passwords. <br>- if sign in with 3rd party authentication system, the password will be automatically created by us<br>- if a user got locked, then we will ask mobile phone to get the validation code
+
+<br/></td></tr><tr id='ISfACACvnGy'><td id='ISfACARev90' style=''>type
+
+<br/></td><td id='ISfACA3nzdq' style=''>Number
+
+<br/></td><td id='ISfACAzjNTH' style=''>Int
+
+<br/></td><td id='ISfACAAd6o9' style=''>1
+
+<br/></td><td id='ISfACAfCVtV' style=''>
+
+<br/></td><td id='ISfACAvqw5R' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAHCNab' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAWZveC' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACA0X4wb' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAJlU8T' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAP1lor' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAs3VnJ' style=''>- This is to identify what type of user they are, we have 2 types user so far: 1 = User, 2= Business Unit<br>- By default, it will be set as 1=User, this is Enum type.
+
+<br/></td></tr><tr id='ISfACAuJtVT'><td id='ISfACA0VQd5' style=''>status
+
+<br/></td><td id='ISfACAtjj03' style=''>Number
+
+<br/></td><td id='ISfACAAx5lz' style=''>Int
+
+<br/></td><td id='ISfACAS336h' style=''>1
+
+<br/></td><td id='ISfACAew9bZ' style=''>
+
+<br/></td><td id='ISfACArz0KT' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACA1RnfI' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAZSWDx' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAOcxyk' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACABv6hO' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAy9olu' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAiuvCm' style=''>- This is to identify user's status<br>- It is a Enum type<br>- The value will be :<br>  0 = Unregistered (barely used)<br>  1 = Registered<br>  2 = Locked (too many tries, we might have a minimun try number)<br>  3 = ForgotPassword<br>  4 = Disabled
+
+<br/></td></tr><tr id='ISfACAKd207'><td id='ISfACA9LUXQ' style=''>isActive
+
+<br/></td><td id='ISfACAW6U51' style=''>Bool
+
+<br/></td><td id='ISfACAU939V' style=''>
+
+<br/></td><td id='ISfACAsadju' style=''>TRUE
+
+<br/></td><td id='ISfACAuo4Qs' style=''>
+
+<br/></td><td id='ISfACAzSqzJ' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAAsmTh' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAS68aB' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACACWNvM' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAa3Jam' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACA3414v' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACANb7NJ' style=''>- this is to state if a user is in use<br>- True: is an active user<br>- False: is an inactive user, or in our black list<br>- By default, it will be set as true
+
+<br/></td></tr><tr id='ISfACAIsneo'><td id='ISfACAHY554' style=''>createdAt
+
+<br/></td><td id='ISfACAMPBqA' style=''>Date
+
+<br/></td><td id='ISfACAdbTtY' style=''>
+
+<br/></td><td id='ISfACAVZLu9' style=''>datetime (automatically filled by system)
+
+<br/></td><td id='ISfACAdrFo0' style=''>
+
+<br/></td><td id='ISfACApCdeK' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAba8NP' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAKWKok' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAmZjOD' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAzhijh' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAkvA1l' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACABYDfL' style=''>
+
+<br/></td></tr><tr id='ISfACAQ0usI'><td id='ISfACAfXH2b' style=''>updatedAt
+
+<br/></td><td id='ISfACAAfix3' style=''>Date
+
+<br/></td><td id='ISfACAzUqZB' style=''>
+
+<br/></td><td id='ISfACABjjs1' style=''>datetime (automatically filled by system)
+
+<br/></td><td id='ISfACAx3zuT' style=''>
+
+<br/></td><td id='ISfACAyjNPk' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAYFkIt' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACABtiI8' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACApYxFL' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAiTAiy' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACARDQ4k' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAfKWnU' style=''>
+
+<br/></td></tr><tr id='ISfACApVIFa'><td id='ISfACA17Kax' style=''>nickname
+
+<br/></td><td id='ISfACAjKRho' style=''>String
+
+<br/></td><td id='ISfACAVzqEC' style=''>
+
+<br/></td><td id='ISfACAmyOTs' style=''>
+
+<br/></td><td id='ISfACAAmqib' style=''>
+
+<br/></td><td id='ISfACAdB2Ui' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAjZHZF' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACARpJ4z' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAkhAAn' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACABFf3W' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAxTXXK' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAqNkv8' style=''>- 1-20 characters
+
+<br/></td></tr><tr id='ISfACAoiSIx'><td id='ISfACAPCkzN' style=''>gender
+
+<br/></td><td id='ISfACAqULAX' style=''>Number
+
+<br/></td><td id='ISfACAoenJl' style=''>Int
+
+<br/></td><td id='ISfACAjdd03' style=''>
+
+<br/></td><td id='ISfACAd8cpG' style=''>
+
+<br/></td><td id='ISfACAe9Ds2' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAP6OFv' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAwSznJ' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACALqsdm' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACArBepk' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAn4tuD' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACALPUJe' style=''>- This is an Enum type: <br>1 = Male <br>2= Female
+
+<br/></td></tr><tr id='ISfACAnLs9N'><td id='ISfACAF7uxB' style=''>birthday
+
+<br/></td><td id='ISfACAABlaA' style=''>Date
+
+<br/></td><td id='ISfACAE9SDH' style=''>
+
+<br/></td><td id='ISfACAms07l' style=''>
+
+<br/></td><td id='ISfACA02M40' style=''>
+
+<br/></td><td id='ISfACAtjvgK' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACArgeXs' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAIvszJ' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACADI29m' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACA2WKpZ' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACALFck4' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAwlxy4' style=''>
+
+<br/></td></tr><tr id='ISfACAijXUp'><td id='ISfACATAZYP' style=''>ageGroup
+
+<br/></td><td id='ISfACA0cZAb' style=''>Number
+
+<br/></td><td id='ISfACAkzRbp' style=''>Int
+
+<br/></td><td id='ISfACAd3rpa' style=''>
+
+<br/></td><td id='ISfACAiWRv0' style=''>
+
+<br/></td><td id='ISfACA1coq9' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACA4YvB8' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAjCO7Y' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAwij7O' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAxiQIr' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAMtod4' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAmvIUi' style=''>- This is a computed column based on birthday Year, and it is an enumberation type: <br> 120 = the birthday year is between 2020 and 2029<br> 110 = the birthday year is between 2010 and 2019 <br> 100 = the birthday year is between 2000 and 2009 <br> 90 = the birthday year is between 1990 and 1999 <br> 80 = the birthday year is between 1980 and 1989 <br> 70 = the birthday year is between 1970 and 1979 <br> 60 = the birthday year is between 1960 and 1969 <br> 50 = the birthday year is between 1950 and 1959 <br> 40 = the birthday year is between 1940 and 1949 <br> 30 = the birthday year is between 1930 and 1939 <br> 20 = the birthday year is between 1920 and 1929 <br> 10 = the birthday year is between 1910 and 1919
+
+<br/></td></tr><tr id='ISfACAZnegx'><td id='ISfACA8Y1Xx' style=''>horoscope
+
+<br/></td><td id='ISfACAafr3H' style=''>Number
+
+<br/></td><td id='ISfACA9p4oF' style=''>Int
+
+<br/></td><td id='ISfACALuXnK' style=''>
+
+<br/></td><td id='ISfACAv8pYt' style=''>
+
+<br/></td><td id='ISfACAzZGaj' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAEiPfe' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACASFBeI' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAWct7e' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACA7CuR3' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACATygxt' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAP62JC' style=''>- This is a computed column based on birthday (Month - Date), and it is an numeration type:<br>1 = Capricorn<br>2 = Aquarius<br>3 = Pisces<br>4 = Aries<br>5 = Taurus<br>6 = Gemini<br>7 = Cancer<br>8 = Leo<br>9 = Virgo<br>10 = Libra<br>11 = Scorpio<br>12 = Sagittarius
+
+<br/></td></tr><tr id='ISfACA3LVmU'><td id='ISfACA76056' style=''>address
+
+<br/></td><td id='ISfACA6KhBF' style=''>Pointer
+
+<br/></td><td id='ISfACA27y2v' style=''>Address
+
+<br/></td><td id='ISfACARICJJ' style=''>
+
+<br/></td><td id='ISfACAjaDU5' style=''>
+
+<br/></td><td id='ISfACAsZF28' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAs1fAF' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAqXEiz' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAjO0zp' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACARbAUo' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAZy1nk' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAll6ui' style=''>- This is an address from Address Table
+
+<br/></td></tr><tr id='ISfACAQdkle'><td id='ISfACAvlF0y' style=''>coverPhoto
+
+<br/></td><td id='ISfACAVR0ih' style=''>File
+
+<br/></td><td id='ISfACAkKNuc' style=''>
+
+<br/></td><td id='ISfACAa869R' style=''>
+
+<br/></td><td id='ISfACA0ZAEE' style=''>
+
+<br/></td><td id='ISfACAOkLoV' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACA8eYOC' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAUhEdn' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACANUCN7' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACA31xOI' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACACxkmP' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAW7VlC' style=''>
+
+<br/></td></tr><tr id='ISfACAlptwi'><td id='ISfACAIgyyo' style=''>whatsUp
+
+<br/></td><td id='ISfACAnUEX5' style=''>String
+
+<br/></td><td id='ISfACANG0qv' style=''>
+
+<br/></td><td id='ISfACAavF6m' style=''>
+
+<br/></td><td id='ISfACAF45Bs' style=''>
+
+<br/></td><td id='ISfACA2chMP' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACApcusZ' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAOWiM9' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAskGLq' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACADfKtT' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAxaIbl' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAt3HAv' style=''>
+
+<br/></td></tr><tr id='ISfACAoih6V'><td id='ISfACAVX32m' style=''>latestLocation
+
+<br/></td><td id='ISfACA7v4i2' style=''>GeoPoint
+
+<br/></td><td id='ISfACAwtrsS' style=''>
+
+<br/></td><td id='ISfACAECik4' style=''>
+
+<br/></td><td id='ISfACAxgNpL' style=''>
+
+<br/></td><td id='ISfACAMSTr2' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAZsn6Y' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAy2ci7' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACA3GKDU' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAtKVe5' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAB3Zjo' style='background-color:#ffffff;'>N/A
+
+<br/></td><td id='ISfACAjR8TW' style=''>
+
+<br/></td></tr><tr id='ISfACAhB6Zz'><td id='ISfACAqo9vW' style=''>aaCount
+
+<br/></td><td id='ISfACAM1w63' style=''>Number
+
+<br/></td><td id='ISfACAmc7XL' style=''>Int
+
+<br/></td><td id='ISfACA8ZLSN' style=''>0
+
+<br/></td><td id='ISfACAmIde7' style=''>
+
+<br/></td><td id='ISfACAuNHUh' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAydNKr' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAKDrOu' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAQPU2Q' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAGGnB8' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACA11Ued' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAxFPbG' style=''>
+
+<br/></td></tr><tr id='ISfACA2Q567'><td id='ISfACAGIpNN' style=''>treatCount
+
+<br/></td><td id='ISfACANFgFe' style=''>Number
+
+<br/></td><td id='ISfACAMgwK4' style=''>Int
+
+<br/></td><td id='ISfACAXLOHH' style=''>0
+
+<br/></td><td id='ISfACAkRIlJ' style=''>
+
+<br/></td><td id='ISfACAhRlL6' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACA6UcIx' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACADv62U' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAfhz2B' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAhf5C7' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAe5w4H' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAJ8dN5' style=''>
+
+<br/></td></tr><tr id='ISfACAuFAzj'><td id='ISfACArrq9A' style=''>toGoCount
+
+<br/></td><td id='ISfACAgdN16' style=''>Number
+
+<br/></td><td id='ISfACAYngGJ' style=''>Int
+
+<br/></td><td id='ISfACA3xxbc' style=''>0
+
+<br/></td><td id='ISfACAiEXhZ' style=''>
+
+<br/></td><td id='ISfACAY989B' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAv6Oko' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAxSLvw' style='background-color:#81c784;'>Y
+
+<br/></td><td id='ISfACAPgB4Q' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAKMYFu' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAW32Yn' style='background-color:#f06292;'>N
+
+<br/></td><td id='ISfACAjfOqM' style=''>
+
+<br/></td></tr><tr id='ISfACAuidAA'><td id='ISfACAkbUcE' style=''>
+
+<br/></td><td id='ISfACAh9R9q' style=''>
+
+<br/></td><td id='ISfACAXbycH' style=''>
+
+<br/></td><td id='ISfACAcG30O' style=''>
+
+<br/></td><td id='ISfACA50cPj' style=''>
+
+<br/></td><td id='ISfACA0Izkh' style=''>
+
+<br/></td><td id='ISfACA6GZWV' style=''>
+
+<br/></td><td id='ISfACAmrRbK' style=''>
+
+<br/></td><td id='ISfACAcSgNR' style=''>
+
+<br/></td><td id='ISfACAxjpmP' style=''>
+
+<br/></td><td id='ISfACApTdqm' style=''>
+
+<br/></td><td id='ISfACA3Sx0Q' style=''>
+
+<br/></td></tr><tr id='ISfACAo5Etg'><td id='ISfACAq2RhA' style=''>
+
+<br/></td><td id='ISfACAejsxO' style=''>
+
+<br/></td><td id='ISfACAe85Fw' style=''>
+
+<br/></td><td id='ISfACAEad0C' style=''>
+
+<br/></td><td id='ISfACAZct7k' style=''>
+
+<br/></td><td id='ISfACAShxx3' style=''>
+
+<br/></td><td id='ISfACATWLdi' style=''>
+
+<br/></td><td id='ISfACAzmqhQ' style=''>
+
+<br/></td><td id='ISfACAfpvKZ' style=''>
+
+<br/></td><td id='ISfACAFkWwG' style=''>
+
+<br/></td><td id='ISfACAMUo9u' style=''>
+
+<br/></td><td id='ISfACASYdhl' style=''>
+
+<br/></td></tr></tbody></table></div></body></html>

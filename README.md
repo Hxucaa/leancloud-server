@@ -58,7 +58,7 @@ All database setting files are located in `populator/database_settings`.
 2. Import all data from population.json files in `populator/database_settings`.
 3. Import all schemas from schema.json files in `populator/database_settings`.
 
-### Indexing
+### Indexes
 - Once you've finished importing schema, go back to the same "存储" page.
 - Click on a class you just imported schema for. Then click on "其他 => 索引".
 - In the popup, setup the indexing exactly like the documentation for each class. You can find the documentation under `populator/database_settings` for each class. **Note** that some of the indexes are required and pre-filled by LeanCloud. Just make sure your version looks exactly the same as the documentation.
