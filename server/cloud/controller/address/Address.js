@@ -4,11 +4,13 @@
 
 "use strict";
 
+import AV from "leanengine";
+
 import { validateRequest, fieldRule } from "../utility/processValidation";
 import { validation, model } from "leancloud-utility";
 
 const { AddressValidation } = validation;
-const { Region } = model;
+const { Region } = model(AV);
 
 function processRegion(request, response) {
 

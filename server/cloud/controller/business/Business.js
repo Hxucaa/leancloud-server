@@ -4,49 +4,73 @@
 
 "use strict";
 
-import { validateRequest, fieldRule } from "../utility/processValidation";
+import { fieldRule } from "../utility/processValidation";
 import { validation } from "leancloud-utility";
 
 const { BusinessValidation } = validation;
 
 /* eslint-disable complexity, max-statements */
 
-export const beforeSave = function(request, response) {
+export const beforeSave = async function(request, response) {
 
-  // Parameters
+  /**
+   * Parameters
+   */
   const business = request.object;
   const email = business.get("email");
   const name = business.get("name");
   const websiteUrl = business.get("websiteUrl");
   const description = business.get("description");
 
-  // Validation
-  validateRequest(error => response.error(error),
-     fieldRule(email, BusinessValidation.verifyEmail),
-     fieldRule(name, BusinessValidation.verifyName),
-     fieldRule(websiteUrl, BusinessValidation.verifyUrl),
-     fieldRule(description, BusinessValidation.verifyDescription)
-  );
+  try {
 
-  response.success();
+    /**
+     * Validation
+     */
+    await fieldRule(email, BusinessValidation.verifyEmail);
+    await fieldRule(name, BusinessValidation.verifyName);
+    await fieldRule(websiteUrl, BusinessValidation.verifyUrl);
+    await fieldRule(description, BusinessValidation.verifyDescription);
+
+    /**
+     * Operation
+     */
+
+    response.success();
+  }
+  catch (err) {
+    response.error(err);
+  }
 };
 
-export const beforeUpdate = function(request, response) {
+export const beforeUpdate = async function(request, response) {
 
-  // Parameters
+  /**
+   * Parameters
+   */
   const business = request.object;
   const email = business.get("email");
   const name = business.get("name");
   const websiteUrl = business.get("websiteUrl");
   const description = business.get("description");
 
-  // Validation
-  validateRequest(error => response.error(error),
-     fieldRule(email, BusinessValidation.verifyEmail),
-     fieldRule(name, BusinessValidation.verifyName),
-     fieldRule(websiteUrl, BusinessValidation.verifyUrl),
-     fieldRule(description, BusinessValidation.verifyDescription)
-  );
+  try {
 
-  response.success();
+    /**
+     * Validation
+     */
+    await fieldRule(email, BusinessValidation.verifyEmail);
+    await fieldRule(name, BusinessValidation.verifyName);
+    await fieldRule(websiteUrl, BusinessValidation.verifyUrl);
+    await fieldRule(description, BusinessValidation.verifyDescription);
+
+    /**
+     * Operation
+     */
+
+    response.success();
+  }
+  catch (err) {
+    response.error(err);
+  }
 };

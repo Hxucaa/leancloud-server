@@ -7,7 +7,7 @@
 //import _ from "lodash";
 import { model } from "leancloud-utility";
 
-const { User } = model;
+const { User } = model(AV);
 
 import { calculateAgeGroup, calculateHoroscope } from "../helper/utility";
 

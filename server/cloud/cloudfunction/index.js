@@ -5,8 +5,10 @@
 "use strict";
 import getParticipantsPreview from "./getParticipantsPreview";
 import checkUsernameAvailability from "./checkUsernameAvailability";
+import openEvent from "./openEvent";
 
 export default {
   getParticipantsPreview,
-  checkUsernameAvailability
+  checkUsernameAvailability,
+  openEvent
 };

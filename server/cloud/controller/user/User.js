@@ -6,14 +6,15 @@
 
 //import * as _ from "lodash";
 import AV from "leanengine";
-import { calculateHoroscope, calculateAgeGroup } from "./utility";
-import { validateRequest, fieldRule } from "../utility/processValidation";
 import { validation, model } from "leancloud-utility";
 
-const { UserValidation } = validation;
-const { UserType } = model;
+import { calculateHoroscope, calculateAgeGroup } from "./utility";
+import { fieldRule } from "../utility/processValidation";
 
-export const beforeSave = function(request, response) {
+const { UserValidation } = validation;
+const { UserType } = model(AV);
+
+export const beforeSave = async function(request, response) {
 
   /**
    * Parameters
@@ -26,30 +27,32 @@ export const beforeSave = function(request, response) {
   const type = user.get("type");
   const nickname = user.get("nickname");
 
-  /**
-   * Validation
-   */
 
-  validateRequest(error => response.error(error),
-    fieldRule(username, UserValidation.verifyUsername),
-    fieldRule(type, UserValidation.verifyType),
-    fieldRule(status, UserValidation.verifyStatus),
-    fieldRule(gender, UserValidation.verifyGender),
-    fieldRule(birthday, UserValidation.verifyBirthday),
-    fieldRule(nickname, UserValidation.verifyNickname)
-  );
+  try {
+    /**
+     * Validation
+     */
+    await fieldRule(username, UserValidation.verifyUsername);
+    await fieldRule(type, UserValidation.verifyType);
+    await fieldRule(status, UserValidation.verifyStatus);
+    await fieldRule(gender, UserValidation.verifyGender);
+    await fieldRule(birthday, UserValidation.verifyBirthday);
+    await fieldRule(nickname, UserValidation.verifyNickname);
 
-  /**
-   * Operation
-   */
+    /**
+     * Operation
+     */
+    const horoscope = calculateHoroscope(birthday);
+    const ageGroup = calculateAgeGroup(birthday);
 
-  const horoscope = calculateHoroscope(birthday);
-  const ageGroup = calculateAgeGroup(birthday);
+    user.set("horoscope", horoscope);
+    user.set("ageGroup", ageGroup);
 
-  user.set("horoscope", horoscope);
-  user.set("ageGroup", ageGroup);
-
-  response.success();
+    response.success();
+  }
+  catch (err) {
+    response.error(err);
+  }
 };
 
 export const afterSave = function(request) {
@@ -119,7 +122,7 @@ export const afterSave = function(request) {
   //})();
 };
 
-export const beforeUpdate = function(request, response) {
+export const beforeUpdate = async function(request, response) {
 
   /**
    * Parameters
@@ -131,31 +134,33 @@ export const beforeUpdate = function(request, response) {
   const birthday = user.get("birthday");
   const nickname = user.get("nickname");
 
-  /**
-   * Validation
-   */
-  validateRequest(error => response.error(error),
-    fieldRule(type, UserValidation.verifyType),
-    fieldRule(status, UserValidation.verifyStatus),
-    fieldRule(gender, UserValidation.verifyGender),
-    fieldRule(birthday, UserValidation.verifyBirthday),
-    fieldRule(nickname, UserValidation.verifyNickname)
-  );
+  try {
+    /**
+     * Validation
+     */
+    await fieldRule(type, UserValidation.verifyType);
+    await fieldRule(status, UserValidation.verifyStatus);
+    await fieldRule(gender, UserValidation.verifyGender);
+    await fieldRule(birthday, UserValidation.verifyBirthday);
+    await fieldRule(nickname, UserValidation.verifyNickname);
 
-  /**
-   * Operation
-   */
-  if (birthday) {
+    /**
+     * Operation
+     */
+    if (birthday) {
 
-    const horoscope = calculateHoroscope(birthday);
-    const ageGroup = calculateAgeGroup(birthday);
+      const horoscope = calculateHoroscope(birthday);
+      const ageGroup = calculateAgeGroup(birthday);
 
-    user.set("horoscope", horoscope);
-    user.set("ageGroup", ageGroup);
+      user.set("horoscope", horoscope);
+      user.set("ageGroup", ageGroup);
+    }
+
+    response.success();
   }
-
-
-  response.success();
+  catch (err) {
+    response.error(err);
+  }
 };
 
 //export const beforeDelete = function(request, response) {

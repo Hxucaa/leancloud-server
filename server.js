@@ -13,7 +13,7 @@ const MASTER_KEY = process.env.LC_APP_MASTER_KEY;
 
 AV.initialize(APP_ID, APP_KEY, MASTER_KEY);
 // 如果不希望使用 masterKey 权限，可以将下面一行删除
-AV.Cloud.useMasterKey();
+//AV.Cloud.useMasterKey();
 
 const app = require("./app");
 

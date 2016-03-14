@@ -2,7 +2,7 @@
 
 import { model } from "leancloud-utility";
 
-const { User } = model;
+const { User, Event } = model(AV);
 
 describe("CloudFunction", () => {
 
@@ -41,6 +41,20 @@ describe("CloudFunction", () => {
           done();
         }, err => {
           done(err);
+        });
+    });
+  });
+
+  describe("openEvent", () => {
+    it("should create a new Event with `open` status", () => {
+      return User.logIn("testuser2", "testuser2")
+        .then(() => {
+          return AV.Cloud.run("openEvent", { businessId: "569f49d2c24aa80053ba8037" });
+        })
+        .then(res => {
+          const eventQuery = new AV.Query(Event);
+
+          return eventQuery.get(res.objectId);
         });
     });
   });

@@ -35,8 +35,9 @@ export default class UserFixture {
     else if (year >= 1990 && year <= 1999) { return 90; }
     else if (year >= 2000 && year <= 2009) { return 100; }
     else if (year >= 2010 && year <= 2019) { return 110; }
-
-    return 120;
+    else {
+      return 120;
+    }
   }
 
   getHoroscope() {  // eslint-disable-line complexity
@@ -77,7 +78,8 @@ export default class UserFixture {
     else if (month === 11 && date >= 22 || month === 12 && date <= 21) {
       return 11;
     }
-    else if (month === 12 && date >= 22 || month === 1 && date <= 19) {
+    //else if (month === 12 && date >= 22 || month === 1 && date <= 19) {
+    else {
       return 12;
     }
   }

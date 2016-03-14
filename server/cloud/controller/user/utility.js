@@ -1,9 +1,11 @@
 
 /* eslint-disable complexity, max-statements */
 
+import AV from "leanengine";
+
 import { model } from "leancloud-utility";
 
-const { AgeGroup, Horoscope } = model;
+const { AgeGroup, Horoscope } = model(AV);
 
 /**
  * Convert birthday to horoscope.
@@ -48,7 +50,8 @@ export function calculateHoroscope(birthdate) {
   else if (month === 11 && date >= 22 || month === 12 && date <= 21) {
     return Horoscope.Scorpio;
   }
-  else if (month === 12 && date >= 22 || month === 1 && date <= 19) {
+  //else if (month === 12 && date >= 22 || month === 1 && date <= 19) {
+  else {
     return Horoscope.Sagittarius;
   }
 }

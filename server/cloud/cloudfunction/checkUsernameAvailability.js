@@ -4,7 +4,7 @@
 import AV from "leanengine";
 import { model } from "leancloud-utility";
 
-const { User } = model;
+const { User } = model(AV);
 
 export default function checkUsernameAvailability(request, response) {
   const username = request.params.username;
@@ -18,7 +18,7 @@ export default function checkUsernameAvailability(request, response) {
   uQuery.equalTo("username", username);
   uQuery.first()
     .then(res => {
-      response.success(!Boolean(res));
+      response.success(!res);
     }, err => {
       response.error(err);
     });
